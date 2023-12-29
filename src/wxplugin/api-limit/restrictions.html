@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>插件调用 API 的限制 | 微信开放文档</title>
+    <meta name="description" content="微信开发者平台文档">
+    <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="shortcut icon" type="image/x-icon" href="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico">
+  <link rel="mask-icon" color="#4C4C4C" href="https://res.wx.qq.com/a/wx_fed/assets/res/MjliNWVm.svg">
+  <link rel="apple-touch-icon-precomposed" href="https://res.wx.qq.com/a/wx_fed/assets/res/OTE0YTAw.png">
+    
+    <link rel="preload" href="https://res.wx.qq.com/wxdoc/dist/assets/css/0.styles.030e812d.css" as="style"><link rel="preload" href="https://res.wx.qq.com/wxdoc/dist/assets/js/app.22b0b45a.js" as="script"><link rel="preload" href="https://res.wx.qq.com/wxdoc/dist/assets/js/1990.cbec408a.js" as="script">
+    <link rel="stylesheet" href="https://res.wx.qq.com/wxdoc/dist/assets/css/0.styles.030e812d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><div class="theme-container"><header class="navbar navbar_with-link"><div class="navbar__left"><a href="/doc/" class="home-link"><div class="logo__wrp"><span class="logo__icon"></span></div></a> <span class="dot"></span> <div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">小程序</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item selected"><!----> <a href="/miniprogram/dev/framework/" class="nav-link external">
+  小程序
+</a></li><li class="dropdown-item"><!----> <a href="/minigame/dev/guide/" class="nav-link external">
+  小游戏
+</a></li><li class="dropdown-item"><!----> <a href="/doc/ministore/minishopquickstart/introduction.html" class="nav-link external">
+  小商店
+</a></li><li class="dropdown-item"><!----> <a href="/doc/offiaccount/Getting_Started/Overview.html" class="nav-link external">
+  公众号
+</a></li><li class="dropdown-item"><!----> <a href="/doc/aispeech/platform/INTRODUCTION.html" class="nav-link external">
+  智能对话
+</a></li><li class="dropdown-item"><!----> <a href="/doc/oplatform/Third-party_Platforms/2.0/getting_started/terminology_introduce.html" class="nav-link external">
+  开放平台
+</a></li><li class="dropdown-item"><!----> <a href="https://work.weixin.qq.com/api/doc" class="nav-link external">
+  企业微信
+</a></li><li class="dropdown-item"><!----> <a href="https://pay.weixin.qq.com/wiki/doc/apiv3/wxpay/pages/index.shtml" class="nav-link external">
+  微信支付
+</a></li><li class="dropdown-item"><!----> <a href="/doc/xwei/xiaowei-introduction/Introduction.html" class="nav-link external">
+  腾讯小微
+</a></li></ul></div></div> <div class="navbar__center"><nav class="nav-links"><div class="nav-item selected"><a href="/miniprogram/dev/framework/" class="nav-link external">
+  开发
+</a></div><div class="nav-item"><a href="/miniprogram/introduction/" class="nav-link external">
+  介绍
+</a></div><div class="nav-item"><a href="/miniprogram/design/" class="nav-link external">
+  设计
+</a></div><div class="nav-item"><a href="/miniprogram/product/" class="nav-link external">
+  运营
+</a></div><div class="nav-item"><a href="/miniprogram/analysis/" class="nav-link external">
+  数据
+</a></div><div class="nav-item"><a href="https://developers.weixin.qq.com/community/develop/question" target="_blank" class="nav-link external">
+  社区
+</a></div></nav></div> <div class="navbar__right"><ul class="lang-tab"><li class="lang-tab__item selected">中文</li> <li class="lang-tab__item">EN</li></ul> <div class="search__wrp"><div class="search__input"><div class="weui-desktop-search"><span class="weui-desktop-form__input-wrp"><span class="weui-desktop-form__input-append-in"><button class="weui-desktop-icon-btn weui-desktop-search__btn"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.33 10.007l4.273 4.273a.502.502 0 0 1 .005.709l-.585.584a.499.499 0 0 1-.709-.004L10.046 11.3a6.278 6.278 0 1 1 1.284-1.294zm.012-3.729a5.063 5.063 0 1 0-10.127 0 5.063 5.063 0 0 0 10.127 0z"></path></svg></button></span> <input placeholder="搜索内容" type="search" value="" class="weui-desktop-form__input"></span></div> <a href="javascript:;" class="search-back__btn">取消</a></div> <div class="reco-list__wrp" style="display:none;"><ul class="reco__list"></ul> <div class="show-more"><a href="/doc/search?source=more&amp;query=&amp;doc_type=miniprogram&amp;jumpbackUrl=%2Fdoc%2F" class="reco-item__link">查看更多 </a></div></div> <div class="reco-list__wrp" style="display:none;"><div class="show-more"><a href="/doc/search?source=more&amp;query=&amp;doc_type=miniprogram&amp;jumpbackUrl=%2Fdoc%2F" class="reco-item__link">在小程序下暂无结果，查看其它业务相关内容 &gt; </a></div></div></div></div></header> <div class="subnavbar"><ul class="subnavbar__list"><li class="subnavbar__item selected" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/framework/" target="_self" class="router-link-active">
+          指南
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/reference/" target="_self">
+          框架
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/component/" target="_self">
+          组件
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/api/" target="_self">
+          API
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/platform-capabilities/" target="_self">平台能力</a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/OpenApiDoc/" target="_self">
+          服务端
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/devtools/devtools" target="_self">
+          工具
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/wxcloud/basis/getting-started" target="_self">
+          云开发
+          </a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/wxcloudrun/src/" target="_self">云托管</a> <!----></div> <!----></li><li class="subnavbar__item" style="display:;"><div class="dropdown-subnavbar-title"><a href="/miniprogram/dev/framework/release/" target="_self">
+          更新日志
+          </a> <!----></div> <!----></li></ul></div> <div class="mobile-links__wrp"><div class="mobile-links_mobile"><a href="javascript:;" class="mobile-links__btn">开发</a></div> <div class="mobile-links__panel"><div class="links-panel__bd"><nav class="nav-links"><div class="nav-item selected"><a href="/miniprogram/dev/framework/" class="nav-link external">
+  开发
+</a></div><div class="nav-item"><a href="/miniprogram/introduction/" class="nav-link external">
+  介绍
+</a></div><div class="nav-item"><a href="/miniprogram/design/" class="nav-link external">
+  设计
+</a></div><div class="nav-item"><a href="/miniprogram/product/" class="nav-link external">
+  运营
+</a></div><div class="nav-item"><a href="/miniprogram/analysis/" class="nav-link external">
+  数据
+</a></div><div class="nav-item"><a href="https://developers.weixin.qq.com/community/develop/question" target="_blank" class="nav-link external">
+  社区
+</a></div></nav></div> <div class="links-panel__ft"><ul class="lang-tab"><li class="lang-tab__item selected">中文</li> <li class="lang-tab__item">EN</li></ul></div></div> <div><div class="weui-mask" style="display:none;"></div> <div class="weui-actionsheet "><!----> <div class="weui-actionsheet__menu"><div class="weui-actionsheet__cell">中文</div><div class="weui-actionsheet__cell">EN</div></div> <div class="weui-actionsheet__action"><div class="weui-actionsheet__cell">取消</div></div></div></div></div> <a href="javascript:;" class="mobile-search-btn"></a> <div class="main-container" style="margin-top:0;"><div class="main-contontaier__bd" style="min-height:0px;"><div class="sidebar__wrp"><div class="sidebar-cell_mobile"><li class="subnavbar__item selected"><a href="javascript:;" target="_self">指南</a></li></div> <aside class="sidebar" style="top:144px;"> <div class="TreeNavigation"><div class="NavigationLevel NavigationLevel--level-0"><ul><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/" class="NavigationItem__router-link">
+      起步
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/#小程序简介" class="NavigationItem__router-link">
+      小程序简介
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/#小程序技术发展史" class="NavigationItem__router-link">
+      小程序技术发展史
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/#小程序与普通网页开发的区别" class="NavigationItem__router-link">
+      小程序与普通网页开发的区别
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/#体验小程序" class="NavigationItem__router-link">
+      体验小程序
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/getstart.html" class="NavigationItem__router-link">
+      开始
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/getstart.html#申请帐号" class="NavigationItem__router-link">
+      申请帐号
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/getstart.html#安装开发工具" class="NavigationItem__router-link">
+      安装开发者工具
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/getstart.html#你的第一个小程序" class="NavigationItem__router-link">
+      你的第一个小程序
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/getstart.html#编译预览" class="NavigationItem__router-link">
+      编译预览
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/code.html" class="NavigationItem__router-link">
+      小程序代码构成
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/code.html#JSON-配置" class="NavigationItem__router-link">
+      JSON 配置
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/code.html#WXML-模板" class="NavigationItem__router-link">
+      WXML 模板
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/code.html#WXSS-样式" class="NavigationItem__router-link">
+      WXSS 样式
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/code.html#JS-逻辑交互" class="NavigationItem__router-link">
+      JS 逻辑交互
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/framework.html" class="NavigationItem__router-link">
+      小程序宿主环境
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/framework.html#渲染层和逻辑层" class="NavigationItem__router-link">
+      渲染层和逻辑层
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/framework.html#程序与页面" class="NavigationItem__router-link">
+      程序与页面
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/framework.html#组件" class="NavigationItem__router-link">
+      组件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/framework.html#API" class="NavigationItem__router-link">
+      API
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/release.html" class="NavigationItem__router-link">
+      小程序协同工作和发布
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/release.html#协同工作" class="NavigationItem__router-link">
+      协同工作
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/release.html#小程序的版本" class="NavigationItem__router-link">
+      小程序的版本
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/release.html#发布上线" class="NavigationItem__router-link">
+      发布上线
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/quickstart/release.html#运营数据" class="NavigationItem__router-link">
+      运营数据
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <!----> <!----> <a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=0008aeea9a8978ab0086a685851c0a" target="_blank" class="NavigationItem__external-link">小程序开发指南</a></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/structure.html" class="NavigationItem__router-link">
+      目录结构
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/config.html" class="NavigationItem__router-link">
+      配置小程序
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/config.html#全局配置" class="NavigationItem__router-link">
+      全局配置
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/config.html#页面配置" class="NavigationItem__router-link">
+      页面配置
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/sitemap.html" class="NavigationItem__router-link">
+      sitemap 配置
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/MINA.html" class="NavigationItem__router-link">
+      小程序框架
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/MINA.html" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/scene.html" class="NavigationItem__router-link">
+      场景值
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/" class="NavigationItem__router-link">
+      逻辑层
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/app.html" class="NavigationItem__router-link">
+      注册小程序
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/page.html" class="NavigationItem__router-link">
+      注册页面
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/page-life-cycle.html" class="NavigationItem__router-link">
+      页面生命周期
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/route.html" class="NavigationItem__router-link">
+      页面路由
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/module.html" class="NavigationItem__router-link">
+      模块化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/app-service/api.html" class="NavigationItem__router-link">
+      API
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/" class="NavigationItem__router-link">
+      视图层
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/wxml/" class="NavigationItem__router-link">
+      WXML
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/wxss.html" class="NavigationItem__router-link">
+      WXSS
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/wxs/" class="NavigationItem__router-link">
+      WXS
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/wxml/event.html" class="NavigationItem__router-link">
+      事件系统
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/wxml/event.html" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/interactive-animation.html" class="NavigationItem__router-link">
+      WXS 响应事件
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/two-way-bindings.html" class="NavigationItem__router-link">
+      简易双向绑定
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/component.html" class="NavigationItem__router-link">
+      基础组件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/selector.html" class="NavigationItem__router-link">
+      获取界面上的节点信息
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/resizable.html" class="NavigationItem__router-link">
+      响应显示区域变化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/frameset.html" class="NavigationItem__router-link">
+      分栏模式
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/animation.html" class="NavigationItem__router-link">
+      动画
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/view/initial-rendering-cache.html" class="NavigationItem__router-link">
+      初始渲染缓存
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/env.html" class="NavigationItem__router-link">
+      小程序运行时
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/env.html" class="NavigationItem__router-link">
+      运行环境
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/js-support.html" class="NavigationItem__router-link">
+      JavaScript 支持情况
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/operating-mechanism.html" class="NavigationItem__router-link">
+      运行机制
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/update-mechanism.html" class="NavigationItem__router-link">
+      更新机制
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/introduction.html" class="NavigationItem__router-link">
+      Skyline 渲染引擎 
+    <span class="wedoc-beta-tag" style="margin-left:0;">Beta</span></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/introduction.html" class="NavigationItem__router-link">
+      概览
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/introduction.html" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/features.html" class="NavigationItem__router-link">
+      特性
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/comparation.html" class="NavigationItem__router-link">
+      性能对比
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/experience.html" class="NavigationItem__router-link">
+      快速体验
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/component.html" class="NavigationItem__router-link">
+      支持与差异
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/component.html" class="NavigationItem__router-link">
+      基础组件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/wxss.html" class="NavigationItem__router-link">
+      WXSS 样式
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/worklet.html" class="NavigationItem__router-link">
+      增强特性
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/worklet.html" class="NavigationItem__router-link">
+      worklet 动画
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/gesture.html" class="NavigationItem__router-link">
+      手势系统
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/custom-route.html" class="NavigationItem__router-link">
+      自定义路由
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/share-element.html" class="NavigationItem__router-link">
+      共享元素动画
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/migration/" class="NavigationItem__router-link">
+      从 WebView 迁移
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/migration/" class="NavigationItem__router-link">
+      起步
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/migration/best-practice.html" class="NavigationItem__router-link">
+      最佳实践
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/migration/compatibility.html" class="NavigationItem__router-link">
+      兼容
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/runtime/skyline/migration/migration-tool.html" class="NavigationItem__router-link">
+      迁移工具
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/" class="NavigationItem__router-link">
+      自定义组件
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/wxml-wxss.html" class="NavigationItem__router-link">
+      组件模板和样式
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/component.html" class="NavigationItem__router-link">
+      Component 构造器
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/events.html" class="NavigationItem__router-link">
+      组件间通信与事件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/lifetimes.html" class="NavigationItem__router-link">
+      组件生命周期
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/behaviors.html" class="NavigationItem__router-link">
+      behaviors
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/relations.html" class="NavigationItem__router-link">
+      组件间关系
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/observer.html" class="NavigationItem__router-link">
+      数据监听器
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/pure-data.html" class="NavigationItem__router-link">
+      纯数据字段
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/generics.html" class="NavigationItem__router-link">
+      抽象节点
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/extend.html" class="NavigationItem__router-link">
+      自定义组件扩展
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/trdparty.html" class="NavigationItem__router-link">
+      开发第三方自定义组件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/unit-test.html" class="NavigationItem__router-link">
+      单元测试
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/update-perf-stat.html" class="NavigationItem__router-link">
+      获取更新性能统计信息
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/custom-component/placeholder.html" class="NavigationItem__router-link">
+      占位组件
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/" class="NavigationItem__router-link router-link-active">
+      插件
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/" class="NavigationItem__router-link router-link-active">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/development.html" class="NavigationItem__router-link">
+      开发插件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/using.html" class="NavigationItem__router-link">
+      使用插件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/api-limit.html" aria-current="page" class="NavigationItem__router-link router-link-exact-active router-link-active">
+      插件调用 API 的限制
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/component-limit.html" class="NavigationItem__router-link">
+      插件使用组件的限制
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages.html" class="NavigationItem__router-link">
+      插件功能页
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages.html" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages/user-info.html" class="NavigationItem__router-link">
+      用户信息功能页
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages/request-payment.html" class="NavigationItem__router-link">
+      支付功能页
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages/choose-address.html" class="NavigationItem__router-link">
+      收货地址功能页
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages/choose-invoice.html" class="NavigationItem__router-link">
+      发票功能页
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/plugin/functional-pages/choose-invoice-title.html" class="NavigationItem__router-link">
+      发票抬头功能页
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/network.html" class="NavigationItem__router-link">
+      基础能力
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/network.html" class="NavigationItem__router-link">
+      网络
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/network.html" class="NavigationItem__router-link">
+      使用说明
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/domain.html" class="NavigationItem__router-link">
+      业务域名
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/mDNS.html" class="NavigationItem__router-link">
+      局域网通信
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/HTTPDNS.html" class="NavigationItem__router-link">
+      移动解析HttpDNS
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/storage.html" class="NavigationItem__router-link">
+      存储
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/file-system.html" class="NavigationItem__router-link">
+      文件系统
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/canvas.html" class="NavigationItem__router-link">
+      画布
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/canvas.html" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/canvas-legacy-migration.html" class="NavigationItem__router-link">
+      旧版迁移指南
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/subpackages.html" class="NavigationItem__router-link">
+      分包加载
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/subpackages/basic.html" class="NavigationItem__router-link">
+      使用分包
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/subpackages/independent.html" class="NavigationItem__router-link">
+      独立分包
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/subpackages/preload.html" class="NavigationItem__router-link">
+      分包预下载
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/subpackages/async.html" class="NavigationItem__router-link">
+      分包异步化
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/lazyload.html" class="NavigationItem__router-link">
+      按需注入和用时注入
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/workers.html" class="NavigationItem__router-link">
+      多线程 Worker
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/server-ability/backend-api.html" class="NavigationItem__router-link">
+      服务端能力
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/server-ability/backend-api.html" class="NavigationItem__router-link">
+      服务端 API
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/server-ability/message-push.html" class="NavigationItem__router-link">
+      消息推送
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/custom-tabbar.html" class="NavigationItem__router-link">
+      自定义 tabBar
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/background-fetch.html" class="NavigationItem__router-link">
+      周期性更新
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/pre-fetch.html" class="NavigationItem__router-link">
+      数据预拉取
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/darkmode.html" class="NavigationItem__router-link">
+      DarkMode 适配指南
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/ability/adapt.html" class="NavigationItem__router-link">
+      大屏适配指南
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/base.html" class="NavigationItem__router-link">
+      AI/AR
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/base.html" class="NavigationItem__router-link">
+      VisionKit 视觉能力
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/base.html" class="NavigationItem__router-link">
+      VisionKit 基础
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/plane.html" class="NavigationItem__router-link">
+      水平面 AR
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/marker.html" class="NavigationItem__router-link">
+      Marker AR
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/osd.html" class="NavigationItem__router-link">
+      单样本检测（OSD）
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/visionkit/face.html" class="NavigationItem__router-link">
+      人脸检测
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/bluetooth.html" class="NavigationItem__router-link">
+      连接硬件能力
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/bluetooth.html" class="NavigationItem__router-link">
+      蓝牙
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/bluetooth.html" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/ble.html" class="NavigationItem__router-link">
+      蓝牙低功耗 (BLE)
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/beacon.html" class="NavigationItem__router-link">
+      蓝牙信标 (Beacon)
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/nfc.html" class="NavigationItem__router-link">
+      近场通信 (NFC)
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/wifi.html" class="NavigationItem__router-link">
+      无线局域网 (Wi-Fi)
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/device-message.html" class="NavigationItem__router-link">
+      设备消息
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/device-access.html" class="NavigationItem__router-link">
+      设备接入
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/device/help.html" class="NavigationItem__router-link">
+      需要帮助
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/login.html" class="NavigationItem__router-link">
+      开放能力
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/login.html" class="NavigationItem__router-link">
+      用户信息
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/login.html" class="NavigationItem__router-link">
+      小程序登录
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/union-id.html" class="NavigationItem__router-link">
+      UnionID 机制说明
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/authorize.html" class="NavigationItem__router-link">
+      授权
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/signature.html" class="NavigationItem__router-link">
+      开放数据校验与解密
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/getPhoneNumber.html" class="NavigationItem__router-link">
+      获取手机号
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/userProfile.html" class="NavigationItem__router-link">
+      获取头像昵称
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/bio-auth.html" class="NavigationItem__router-link">
+      生物认证
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/share-timeline.html" class="NavigationItem__router-link">
+      分享到朋友圈
+    <span class="wedoc-beta-tag" style="margin-left:0;">Beta</span></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/share.html" class="NavigationItem__router-link">
+      转发
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/share.html" class="NavigationItem__router-link">
+      转发
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/share/updatable-message.html" class="NavigationItem__router-link">
+      动态消息
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/share/private-message.html" class="NavigationItem__router-link">
+      小程序私密消息
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/favorite.html" class="NavigationItem__router-link">
+      收藏
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/material/support_material.html" class="NavigationItem__router-link">
+      聊天素材打开
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/safe-password.html" class="NavigationItem__router-link">
+      安全能力
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/user-encryptkey.html" class="NavigationItem__router-link">
+      小程序加密网络通道
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/safe-password.html" class="NavigationItem__router-link">
+      安全键盘
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/share-werun.html" class="NavigationItem__router-link">
+      分享数据到微信运动
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/voip-chat.html" class="NavigationItem__router-link">
+      音视频通话
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/voip-chat.html" class="NavigationItem__router-link">
+      多人音视频对话
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/1v1voip.html" class="NavigationItem__router-link">
+      双人音视频对话
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/launchApp.html" class="NavigationItem__router-link">
+      打开 App
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html" class="NavigationItem__router-link">
+      打开半屏小程序
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/subscribe-message.html" class="NavigationItem__router-link">
+      消息
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/subscribe-message.html" class="NavigationItem__router-link">
+      订阅消息
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/subscribe-message.html#订阅消息语音提醒" class="NavigationItem__router-link">
+      订阅消息语音提醒
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/subscribe-message.html#订阅消息添加提醒" class="NavigationItem__router-link">
+      订阅消息添加提醒
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/uniform-message.html" class="NavigationItem__router-link">
+      统一服务消息
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/customer-message.html" class="NavigationItem__router-link">
+      客服消息
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/customer-message.html" class="NavigationItem__router-link">
+      概述
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/receive.html" class="NavigationItem__router-link">
+      接收消息和事件
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/send.html" class="NavigationItem__router-link">
+      发送消息
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/trans.html" class="NavigationItem__router-link">
+      转发消息
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/typing.html" class="NavigationItem__router-link">
+      下发客服输入状态
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/customer-message/temp-media.html" class="NavigationItem__router-link">
+      临时素材
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/location-message.html" class="NavigationItem__router-link">
+      位置消息
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/qr-code.html" class="NavigationItem__router-link">
+      获取小程序码
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/url-scheme.html" class="NavigationItem__router-link">
+      获取小程序链接
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/url-scheme.html" class="NavigationItem__router-link">
+      获取 URL Scheme
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/url-link.html" class="NavigationItem__router-link">
+      获取 URL Link
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/shortlink.html" class="NavigationItem__router-link">
+      获取 Short Link
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/sms.html" class="NavigationItem__router-link">
+      应用：短信打开小程序
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/NFC.html" class="NavigationItem__router-link">
+      应用：NFC 标签打开小程序
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/channels-profile.html" class="NavigationItem__router-link">
+      视频号
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/channels-profile.html" class="NavigationItem__router-link">
+      视频号主页
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/channels-activity.html" class="NavigationItem__router-link">
+      视频号视频
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/channels-live.html" class="NavigationItem__router-link">
+      视频号直播
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/channels-event.html" class="NavigationItem__router-link">
+      视频号活动
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/data-analysis.html" class="NavigationItem__router-link">
+      数据分析
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/nearby.html" class="NavigationItem__router-link">
+      附近的小程序
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/banner-ad.html" class="NavigationItem__router-link">
+      广告
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/banner-ad.html" class="NavigationItem__router-link">
+      Banner 广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/rewarded-video-ad.html" class="NavigationItem__router-link">
+      激励视频广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/interstitialAd-ad.html" class="NavigationItem__router-link">
+      插屏广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/video-feeds-ad.html" class="NavigationItem__router-link">
+      视频广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/video-patch-ad.html" class="NavigationItem__router-link">
+      视频前贴广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/grid-ad.html" class="NavigationItem__router-link">
+      格子广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/custom-ad.html" class="NavigationItem__router-link">
+      原生模板广告
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/preload-ad.html" class="NavigationItem__router-link">
+      广告预加载接口
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/ad-data-interface.html" class="NavigationItem__router-link">
+      广告数据接口
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/ad-data-interface.html#一、获取小程序广告汇总数据（publisher-adpos-general）" class="NavigationItem__router-link">
+      广告汇总数据
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/ad-data-interface.html#二、获取小程序广告细分数据（publisher-adunit-general）" class="NavigationItem__router-link">
+      广告细分数据
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/ad-data-interface.html#三、获取小程序广告位清单（get-adunit-list）" class="NavigationItem__router-link">
+      广告位清单
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/open-ability/ad/ad-data-interface.html#四、获取小程序结算收入数据及结算主体信息（publisher-settlement）" class="NavigationItem__router-link">
+      结算收入数据
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/usability/debug.html" class="NavigationItem__router-link">
+      调试
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/usability/debug.html" class="NavigationItem__router-link">
+      概述
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/usability/vConsole.html" class="NavigationItem__router-link">
+      vConsole
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/usability/sourceMap.html" class="NavigationItem__router-link">
+      Source Map
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/realtimelog/" class="NavigationItem__router-link">
+      实时日志
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/usability/PublicErrno.html" class="NavigationItem__router-link">
+      Errno错误码
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start.html" class="NavigationItem__router-link">
+      性能与体验
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/" class="NavigationItem__router-link">
+      概述
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start.html" class="NavigationItem__router-link">
+      启动性能
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start.html" class="NavigationItem__router-link">
+      概述
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start_process.html" class="NavigationItem__router-link">
+      小程序启动流程
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start_optimizeA.html" class="NavigationItem__router-link">
+      代码包体积优化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start_optimizeB.html" class="NavigationItem__router-link">
+      代码注入优化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start_optimizeC.html" class="NavigationItem__router-link">
+      首屏渲染优化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/start_optimizeD.html" class="NavigationItem__router-link">
+      其他优化建议
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips.html" class="NavigationItem__router-link">
+      运行时性能
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips.html" class="NavigationItem__router-link">
+      概述
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/runtime_setData.html" class="NavigationItem__router-link">
+      合理使用 setData
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/runtime_render.html" class="NavigationItem__router-link">
+      渲染性能优化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/runtime_nav.html" class="NavigationItem__router-link">
+      页面切换优化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/runtime_resource.html" class="NavigationItem__router-link">
+      资源加载优化
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/tips/runtime_memory.html" class="NavigationItem__router-link">
+      内存优化
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/perf_data.html" class="NavigationItem__router-link">
+      性能数据
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performanceReport/" class="NavigationItem__router-link">
+      小程序测速
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/perf_debug.html" class="NavigationItem__router-link">
+      调试工具
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/perf_debug.html" class="NavigationItem__router-link">
+      概述
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/remote_debug_2.html" class="NavigationItem__router-link">
+      真机调试 2.0
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/devtools-perf.html" class="NavigationItem__router-link">
+      「模拟器」和「调试器」
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/quality-panel.html" class="NavigationItem__router-link">
+      代码质量分析面板
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/fps_panel.html" class="NavigationItem__router-link">
+      FPS 面板
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/panel.html" class="NavigationItem__router-link">
+      性能面板
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/audits.html" class="NavigationItem__router-link">
+      体验评分
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/audits.html" class="NavigationItem__router-link">
+      体验评分简介
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-3"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/scoring.html" class="NavigationItem__router-link">
+      评分方法与规则
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/scoring.html" class="NavigationItem__router-link">
+      评分方法
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/performance.html" class="NavigationItem__router-link">
+      性能
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/accessibility.html" class="NavigationItem__router-link">
+      体验
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/audits/best-practice.html" class="NavigationItem__router-link">
+      最佳实践
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/wasm.html" class="NavigationItem__router-link">
+      WXWebAssembly
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/api-frequency.html" class="NavigationItem__router-link">
+      接口调用频率规范
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/network.html" class="NavigationItem__router-link">
+      网络调优
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/performance/weak-network.html" class="NavigationItem__router-link">
+      弱网体验优化
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html" class="NavigationItem__router-link">
+      安全指引
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#开发原则与注意事项" class="NavigationItem__router-link">
+      开发原则与注意事项
+    <!----></a> <!----> <!----></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#通用" class="NavigationItem__router-link">
+      通用
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#接口鉴权" class="NavigationItem__router-link">
+      接口鉴权
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#代码管理与泄漏" class="NavigationItem__router-link">
+      代码管理与泄漏
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#信息泄露" class="NavigationItem__router-link">
+      信息泄露
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#授权用户资料变更" class="NavigationItem__router-link">
+      授权用户资料变更
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#后台（包括云函数与自建后台）" class="NavigationItem__router-link">
+      后台
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#注入漏洞" class="NavigationItem__router-link">
+      注入漏洞
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#弱口令" class="NavigationItem__router-link">
+      弱口令
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#文件上传漏洞" class="NavigationItem__router-link">
+      文件上传漏洞
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#文件下载" class="NavigationItem__router-link">
+      文件下载
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#目录遍历" class="NavigationItem__router-link">
+      目录遍历
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/security.html#条件竞争" class="NavigationItem__router-link">
+      条件竞争
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/operation.html" class="NavigationItem__router-link">
+      健康运营指引
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-2"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/user-privacy/" class="NavigationItem__router-link">
+      用户隐私保护
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/user-privacy/" class="NavigationItem__router-link">
+      用户隐私保护指引填写说明
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/user-privacy/miniprogram-intro.html" class="NavigationItem__router-link">
+      小程序用户隐私保护指引内容介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/user-privacy/plugin-intro.html" class="NavigationItem__router-link">
+      插件用户隐私保护说明内容介绍
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/operation.html#用户安全解决方案" class="NavigationItem__router-link">
+      用户安全解决方案
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/operation.html#内容安全解决方案" class="NavigationItem__router-link">
+      内容安全解决方案
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><span class="NavigationItem"><!----> <!----> <!----> <a href="https://developers.weixin.qq.com/miniprogram/dev/dev_wxwork/" target="_blank" class="NavigationItem__external-link">企业微信兼容</a></span></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/client-lib/" class="NavigationItem__router-link">
+      基础库
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/client-lib/" class="NavigationItem__router-link">
+      介绍
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/client-lib/version.html" class="NavigationItem__router-link">
+      版本分布
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/compatibility.html" class="NavigationItem__router-link">
+      低版本兼容
+    <!----></a> <!----> <!----></span></li></ul></div></li><li><div class="NavigationLevel NavigationLevel--closed NavigationLevel--level-1"><div class="NavigationLevel__parent"><span class="NavigationToggle NavigationToggle--closed"><span class="NavigationToggle__icon NavigationToggle__icon--closed"></span></span> <span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/search/seo.html" class="NavigationItem__router-link">
+      小程序搜索
+    <!----></a> <!----> <!----></span></div> <ul class="NavigationLevel__children"><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/search/seo.html" class="NavigationItem__router-link">
+      小程序搜索优化指南
+    <!----></a> <!----> <!----></span></li><li><span class="NavigationItem"><!----> <a href="/miniprogram/dev/framework/product/" class="NavigationItem__router-link">
+      商品数据接入（内测）
+    <!----></a> <!----> <!----></span></li></ul></div></li></ul></div></div> </aside></div> <div class="page__wrp"><main class="page"><div class="page-inner" style="min-height:0px;"> <div id="docContent"><div class="Breadcrumb"></div> <div class="content custom"><h1 id="插件调用-API-的限制"><a href="#插件调用-API-的限制" class="header-anchor">#</a> 插件调用 API 的限制</h1> <p>插件可以调用的 API 与小程序不同，主要有两个区别：</p> <ul><li>插件的请求域名列表与小程序相互独立；</li> <li>一些 API 不允许插件调用（这些函数不存在于 <code>wx</code> 对象下）。</li></ul> <p>有些接口虽然在插件中不能使用，但可以通过插件功能页来达到目的，请参考 <a href="./functional-pages.html">插件功能页</a>。</p> <p>各接口在插件中的支持情况可以在各接口的文档中确认，接口文档中会有如 <em>「本接口从基础库 2.1.0 起支持在小程序插件中使用」</em> 的标识；如果没有标识，说明插件暂未支持，如果有需要的具体使用场景和需求，可以在开发者社区中反馈。</p> <p>以下表格汇总了目前插件可以调用的 API 及其对应版本要求，<strong>但这份表格已经不再更新，是否可以使用，请以具体接口文档中的说明和真机表现为准</strong>。</p> <details><summary>插件支持接口情况参考汇总（表格已停止维护）</summary> <h3 id="基础"><a href="#基础" class="header-anchor">#</a> 基础</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/base/wx.arrayBufferToBase64.html">wx.arrayBufferToBase64</a></td> <td></td> <td></td></tr> <tr><td><a href="../../api/base/wx.base64ToArrayBuffer.html">wx.base64ToArrayBuffer</a></td> <td></td> <td></td></tr></tbody></table></div><h3 id="发起请求"><a href="#发起请求" class="header-anchor">#</a> 发起请求</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/network/request/wx.request.html">wx.request</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="上传、下载"><a href="#上传、下载" class="header-anchor">#</a> 上传、下载</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/network/download/wx.downloadFile.html">wx.downloadFile</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/network/upload/wx.uploadFile.html">wx.uploadFile</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="WebSocket"><a href="#WebSocket" class="header-anchor">#</a> WebSocket</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/network/websocket/wx.connectSocket.html">wx.connectSocket</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="图片"><a href="#图片" class="header-anchor">#</a> 图片</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/image/wx.previewImage.html">wx.previewImage</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/image/wx.chooseImage.html">wx.chooseImage</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/image/wx.getImageInfo.html">wx.getImageInfo</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/image/wx.saveImageToPhotosAlbum.html">wx.saveImageToPhotosAlbum</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="录音"><a href="#录音" class="header-anchor">#</a> 录音</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/recorder/wx.startRecord.html">wx.startRecord</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/recorder/wx.stopRecord.html">wx.stopRecord</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="实时音视频"><a href="#实时音视频" class="header-anchor">#</a> 实时音视频</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/live/wx.createLivePlayerContext.html">wx.createLivePlayerContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/live/wx.createLivePusherContext.html">wx.createLivePusherContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="录音管理"><a href="#录音管理" class="header-anchor">#</a> 录音管理</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/recorder/wx.getRecorderManager.html">wx.getRecorderManager</a></td> <td><a href="../compatibility.html">1.9.94</a></td> <td></td></tr></tbody></table></div><h3 id="音频播放控制"><a href="#音频播放控制" class="header-anchor">#</a> 音频播放控制</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/audio/wx.pauseVoice.html">wx.pauseVoice</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/audio/wx.playVoice.html">wx.playVoice</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/audio/wx.stopVoice.html">wx.stopVoice</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="音乐播放控制"><a href="#音乐播放控制" class="header-anchor">#</a> 音乐播放控制</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/background-audio/wx.onBackgroundAudioPlay.html">wx.onBackgroundAudioPlay</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.getBackgroundAudioPlayerState.html">wx.getBackgroundAudioPlayerState</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.onBackgroundAudioStop.html">wx.onBackgroundAudioStop</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.stopBackgroundAudio.html">wx.stopBackgroundAudio</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.onBackgroundAudioPause.html">wx.onBackgroundAudioPause</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.seekBackgroundAudio.html">wx.seekBackgroundAudio</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.playBackgroundAudio.html">wx.playBackgroundAudio</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/background-audio/wx.pauseBackgroundAudio.html">wx.pauseBackgroundAudio</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="背景音频播放管理"><a href="#背景音频播放管理" class="header-anchor">#</a> 背景音频播放管理</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/background-audio/wx.getBackgroundAudioManager.html">wx.getBackgroundAudioManager</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="音频组件控制"><a href="#音频组件控制" class="header-anchor">#</a> 音频组件控制</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/audio/wx.createInnerAudioContext.html">wx.createInnerAudioContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/audio/wx.createAudioContext.html">wx.createAudioContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="视频"><a href="#视频" class="header-anchor">#</a> 视频</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/video/wx.chooseVideo.html">wx.chooseVideo</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/media/video/wx.saveVideoToPhotosAlbum.html">wx.saveVideoToPhotosAlbum</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="视频组件控制"><a href="#视频组件控制" class="header-anchor">#</a> 视频组件控制</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/video/wx.createVideoContext.html">wx.createVideoContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="相机组件控制"><a href="#相机组件控制" class="header-anchor">#</a> 相机组件控制</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/camera/wx.createCameraContext.html">wx.createCameraContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="数据缓存"><a href="#数据缓存" class="header-anchor">#</a> 数据缓存</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/storage/wx.setStorage.html">wx.setStorage</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/storage/wx.getStorage.html">wx.getStorage</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/storage/wx.removeStorage.html">wx.removeStorage</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/storage/wx.setStorageSync.html">wx.setStorageSync</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/storage/wx.getStorageSync.html">wx.getStorageSync</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/storage/wx.removeStorageSync.html">wx.removeStorageSync</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="获取位置"><a href="#获取位置" class="header-anchor">#</a> 获取位置</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/location/wx.getLocation.html">wx.getLocation</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/location/wx.chooseLocation.html">wx.chooseLocation</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/location/wx.onLocationChange.html">wx.onLocationChange</a></td> <td><a href="../compatibility.html">2.8.0</a></td> <td></td></tr> <tr><td><a href="../../api/location/wx.offLocationChange.html">wx.offLocationChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/location/wx.stopLocationUpdate.html">wx.stopLocationUpdate</a></td> <td><a href="../compatibility.html">2.8.0</a></td> <td></td></tr> <tr><td><a href="../../api/location/wx.startLocationUpdate.html">wx.startLocationUpdate</a></td> <td><a href="../compatibility.html">2.8.0</a></td> <td></td></tr></tbody></table></div><h3 id="查看位置"><a href="#查看位置" class="header-anchor">#</a> 查看位置</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/location/wx.openLocation.html">wx.openLocation</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="地图组件控制"><a href="#地图组件控制" class="header-anchor">#</a> 地图组件控制</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/media/map/wx.createMapContext.html">wx.createMapContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="系统信息"><a href="#系统信息" class="header-anchor">#</a> 系统信息</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/base/system/wx.getSystemInfoSync.html">wx.getSystemInfoSync</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/base/system/wx.getSystemInfo.html">wx.getSystemInfo</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="屏幕亮度"><a href="#屏幕亮度" class="header-anchor">#</a> 屏幕亮度</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/screen/wx.setKeepScreenOn.html">wx.setKeepScreenOn</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/screen/wx.setScreenBrightness.html">wx.setScreenBrightness</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/screen/wx.getScreenBrightness.html">wx.getScreenBrightness</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="用户截屏事件"><a href="#用户截屏事件" class="header-anchor">#</a> 用户截屏事件</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/screen/wx.onUserCaptureScreen.html">wx.onUserCaptureScreen</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/device/screen/wx.offUserCaptureScreen.html">wx.offUserCaptureScreen</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="振动"><a href="#振动" class="header-anchor">#</a> 振动</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/vibrate/wx.vibrateLong.html">wx.vibrateLong</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/vibrate/wx.vibrateShort.html">wx.vibrateShort</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="手机联系人"><a href="#手机联系人" class="header-anchor">#</a> 手机联系人</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/contact/wx.addPhoneContact.html">wx.addPhoneContact</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="NFC"><a href="#NFC" class="header-anchor">#</a> NFC</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/nfc-hce/wx.sendHCEMessage.html">wx.sendHCEMessage</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td></td></tr> <tr><td><a href="../../api/device/nfc-hce/wx.stopHCE.html">wx.stopHCE</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td></td></tr> <tr><td><a href="../../api/device/nfc-hce/wx.onHCEMessage.html">wx.onHCEMessage</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td></td></tr> <tr><td><a href="../../api/device/nfc-hce/wx.offHCEMessage.html">wx.offHCEMessage</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/nfc-hce/wx.startHCE.html">wx.startHCE</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td></td></tr> <tr><td><a href="../../api/device/nfc-hce/wx.getHCEState.html">wx.getHCEState</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td></td></tr></tbody></table></div><h3 id="网络状态"><a href="#网络状态" class="header-anchor">#</a> 网络状态</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/network/wx.onNetworkStatusChange.html">wx.onNetworkStatusChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/network/wx.offNetworkStatusChange.html">wx.offNetworkStatusChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/network/wx.getNetworkType.html">wx.getNetworkType</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="加速度计"><a href="#加速度计" class="header-anchor">#</a> 加速度计</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/accelerometer/wx.startAccelerometer.html">wx.startAccelerometer</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/accelerometer/wx.stopAccelerometer.html">wx.stopAccelerometer</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/accelerometer/wx.onAccelerometerChange.html">wx.onAccelerometerChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/accelerometer/wx.offAccelerometerChange.html">wx.offAccelerometerChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr></tbody></table></div><h3 id="设备方向"><a href="#设备方向" class="header-anchor">#</a> 设备方向</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/motion/wx.startDeviceMotionListening.html">wx.startDeviceMotionListening</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/motion/wx.stopDeviceMotionListening.html">wx.stopDeviceMotionListening</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/motion/wx.offDeviceMotionChange.html">wx.offDeviceMotionChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/motion/wx.onDeviceMotionChange.html">wx.onDeviceMotionChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr></tbody></table></div><h3 id="陀螺仪"><a href="#陀螺仪" class="header-anchor">#</a> 陀螺仪</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/gyroscope/wx.startGyroscope.html">wx.startGyroscope</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/gyroscope/wx.stopGyroscope.html">wx.stopGyroscope</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/gyroscope/wx.offGyroscopeChange.html">wx.offGyroscopeChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/gyroscope/wx.onGyroscopeChange.html">wx.onGyroscopeChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr></tbody></table></div><h3 id="罗盘"><a href="#罗盘" class="header-anchor">#</a> 罗盘</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/compass/wx.onCompassChange.html">wx.onCompassChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/compass/wx.offCompassChange.html">wx.offCompassChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/compass/wx.stopCompass.html">wx.stopCompass</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/compass/wx.startCompass.html">wx.startCompass</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="拨打电话"><a href="#拨打电话" class="header-anchor">#</a> 拨打电话</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/phone/wx.makePhoneCall.html">wx.makePhoneCall</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="扫码"><a href="#扫码" class="header-anchor">#</a> 扫码</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/scan/wx.scanCode.html">wx.scanCode</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="剪贴板"><a href="#剪贴板" class="header-anchor">#</a> 剪贴板</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/clipboard/wx.setClipboardData.html">wx.setClipboardData</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/clipboard/wx.getClipboardData.html">wx.getClipboardData</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="蓝牙"><a href="#蓝牙" class="header-anchor">#</a> 蓝牙</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/bluetooth-ble/wx.writeBLECharacteristicValue.html">wx.writeBLECharacteristicValue</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.startBluetoothDevicesDiscovery.html">wx.startBluetoothDevicesDiscovery</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.getConnectedBluetoothDevices.html">wx.getConnectedBluetoothDevices</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.notifyBLECharacteristicValueChange.html">wx.notifyBLECharacteristicValueChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.onBluetoothDeviceFound.html">wx.onBluetoothDeviceFound</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.offBluetoothDeviceFound.html">wx.offBluetoothDeviceFound</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.readBLECharacteristicValue.html">wx.readBLECharacteristicValue</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.openBluetoothAdapter.html">wx.openBluetoothAdapter</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.getBLEDeviceCharacteristics.html">wx.getBLEDeviceCharacteristics</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.stopBluetoothDevicesDiscovery.html">wx.stopBluetoothDevicesDiscovery</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.onBLEConnectionStateChange.html">wx.onBLEConnectionStateChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.getBluetoothDevices.html">wx.getBluetoothDevices</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.getBluetoothAdapterState.html">wx.getBluetoothAdapterState</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.onBluetoothAdapterStateChange.html">wx.onBluetoothAdapterStateChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.offBluetoothAdapterStateChange.html">wx.offBluetoothAdapterStateChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.getBLEDeviceServices.html">wx.getBLEDeviceServices</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.onBLECharacteristicValueChange.html">wx.onBLECharacteristicValueChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.offBLECharacteristicValueChange.html">wx.offBLECharacteristicValueChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.createBLEConnection.html">wx.createBLEConnection</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth/wx.closeBluetoothAdapter.html">wx.closeBluetoothAdapter</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.closeBLEConnection.html">wx.closeBLEConnection</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.notifyBLECharacteristicValueChange.html">wx.notifyBLECharacteristicValueChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.onBLEConnectionStateChange.html">wx.onBLEConnectionStateChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/bluetooth-ble/wx.offBLEConnectionStateChange.html">wx.offBLEConnectionStateChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr></tbody></table></div><h3 id="iBeacon"><a href="#iBeacon" class="header-anchor">#</a> iBeacon</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/ibeacon/wx.getBeacons.html">wx.getBeacons</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/ibeacon/wx.startBeaconDiscovery.html">wx.startBeaconDiscovery</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/ibeacon/wx.onBeaconServiceChange.html">wx.onBeaconServiceChange</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/ibeacon/wx.offBeaconServiceChange.html">wx.offBeaconServiceChange</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/ibeacon/wx.onBeaconUpdate.html">wx.onBeaconUpdate</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/device/ibeacon/wx.offBeaconUpdate.html">wx.offBeaconUpdate</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/ibeacon/wx.stopBeaconDiscovery.html">wx.stopBeaconDiscovery</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="Wi-Fi"><a href="#Wi-Fi" class="header-anchor">#</a> Wi-Fi</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/device/wifi/wx.connectWifi.html">wx.connectWifi</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.getConnectedWifi.html">wx.getConnectedWifi</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.getWifiList.html">wx.getWifiList</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.offGetWifiList.html">wx.offGetWifiList</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.offWifiConnected.html">wx.offWifiConnected</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="(wx.onEvaluateWifi)">wx.onEvaluateWifi</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.onGetWifiList.html">wx.onGetWifiList</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.onWifiConnected.html">wx.onWifiConnected</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="(wx.presetWifiList)">wx.presetWifiList</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.setWifiList.html">wx.setWifiList</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.startWifi.html">wx.startWifi</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr> <tr><td><a href="../../api/device/wifi/wx.stopWifi.html">wx.stopWifi</a></td> <td><a href="../compatibility.html">2.9.1</a></td> <td></td></tr></tbody></table></div> <h3 id="交互反馈"><a href="#交互反馈" class="header-anchor">#</a> 交互反馈</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/ui/interaction/wx.hideLoading.html">wx.hideLoading</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/ui/interaction/wx.showActionSheet.html">wx.showActionSheet</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/ui/interaction/wx.showLoading.html">wx.showLoading</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/ui/interaction/wx.hideToast.html">wx.hideToast</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/ui/interaction/wx.showToast.html">wx.showToast</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/ui/interaction/wx.showModal.html">wx.showModal</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="设置导航条"><a href="#设置导航条" class="header-anchor">#</a> 设置导航条</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/ui/navigation-bar/wx.showNavigationBarLoading.html">wx.showNavigationBarLoading</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/ui/navigation-bar/wx.hideNavigationBarLoading.html">wx.hideNavigationBarLoading</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/ui/navigation-bar/wx.setNavigationBarColor.html">wx.setNavigationBarColor</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/ui/navigation-bar/wx.setNavigationBarTitle.html">wx.setNavigationBarTitle</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="背景"><a href="#背景" class="header-anchor">#</a> 背景</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/ui/background/wx.setBackgroundColor.html">wx.setBackgroundColor</a></td> <td><a href="../compatibility.html">2.4.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/ui/background/wx.setBackgroundTextStyle.html">wx.setBackgroundTextStyle</a></td> <td><a href="../compatibility.html">2.4.0</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="WXML-节点信息"><a href="#WXML-节点信息" class="header-anchor">#</a> WXML 节点信息</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/wxml/wx.createSelectorQuery.html">wx.createSelectorQuery</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="WXML-节点布局相交状态"><a href="#WXML-节点布局相交状态" class="header-anchor">#</a> WXML 节点布局相交状态</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/wxml/wx.createIntersectionObserver.html">wx.createIntersectionObserver</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="导航"><a href="#导航" class="header-anchor">#</a> 导航</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/route/wx.navigateBack.html">wx.navigateBack</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/route/wx.navigateTo.html">wx.navigateTo</a></td> <td><a href="../compatibility.html">2.2.2</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/route/wx.redirectTo.html">wx.redirectTo</a></td> <td><a href="../compatibility.html">2.2.2</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/route/wx.switchTab.html">wx.switchTab</a></td> <td><a href="../compatibility.html">2.3.1</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/route/wx.reLaunch.html">wx.reLaunch</a></td> <td><a href="../compatibility.html">2.3.1</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="动画"><a href="#动画" class="header-anchor">#</a> 动画</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/ui/animation/wx.createAnimation.html">wx.createAnimation</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="位置"><a href="#位置" class="header-anchor">#</a> 位置</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/ui/scroll/wx.pageScrollTo.html">wx.pageScrollTo</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="绘图"><a href="#绘图" class="header-anchor">#</a> 绘图</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/canvas/wx.createOffscreenCanvas.html">wx.createOffscreenCanvas</a></td> <td><a href="../compatibility.html">2.7.1</a></td> <td></td></tr> <tr><td><a href="../../api/canvas/wx.canvasPutImageData.html">wx.canvasPutImageData</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/canvas/wx.canvasToTempFilePath.html">wx.canvasToTempFilePath</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/canvas/wx.createCanvasContext.html">wx.createCanvasContext</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr> <tr><td><a href="../../api/canvas/wx.canvasGetImageData.html">wx.canvasGetImageData</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td></td></tr></tbody></table></div><h3 id="下拉刷新"><a href="#下拉刷新" class="header-anchor">#</a> 下拉刷新</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/ui/pull-down-refresh/wx.stopPullDownRefresh.html">wx.stopPullDownRefresh</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/ui/pull-down-refresh/wx.startPullDownRefresh.html">wx.startPullDownRefresh</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="当前帐号信息"><a href="#当前帐号信息" class="header-anchor">#</a> 当前帐号信息</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/open-api/account-info/wx.getAccountInfoSync.html">wx.getAccountInfoSync</a></td> <td><a href="../compatibility.html">2.2.2</a></td> <td></td></tr></tbody></table></div><h3 id="转发"><a href="#转发" class="header-anchor">#</a> 转发</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/share/wx.hideShareMenu.html">wx.hideShareMenu</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/share/wx.getShareInfo.html">wx.getShareInfo</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/share/wx.showShareMenu.html">wx.showShareMenu</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr> <tr><td><a href="../../api/share/wx.updateShareMenu.html">wx.updateShareMenu</a></td> <td><a href="../compatibility.html">2.1.0</a></td> <td>仅限插件页面中调用</td></tr></tbody></table></div><h3 id="实时日志"><a href="#实时日志" class="header-anchor">#</a> 实时日志</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/base/debug/wx.getRealtimeLogManager.html">wx.getRealtimeLogManager</a></td> <td><a href="../compatibility.html">2.16.0</a></td> <td></td></tr></tbody></table></div><h3 id="其他"><a href="#其他" class="header-anchor">#</a> 其他</h3> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/open-api/setting/wx.getSetting.html">wx.getSetting</a></td> <td><a href="../compatibility.html">2.6.3</a></td> <td></td></tr> <tr><td><a href="../../api/open-api/setting/wx.openSetting.html">wx.openSetting</a></td> <td><a href="../compatibility.html">2.10.3</a></td> <td></td></tr> <tr><td><a href="../../api/data-analysis/wx.reportAnalytics.html">wx.reportAnalytics</a></td> <td><a href="../compatibility.html">1.9.6</a></td> <td>见下方备注</td></tr></tbody></table></div><h3 id="登录和获取用户信息"><a href="#登录和获取用户信息" class="header-anchor">#</a> 登录和获取用户信息</h3> <p><strong>这一组接口仅限在用户信息功能页中获得用户授权之后调用。否则将返回 fail 。详见 <a href="./functional-pages/user-info.html">用户信息功能页</a> 。</strong></p> <div class="table-wrp"><table><thead><tr><th>API</th> <th>最低版本</th> <th>备注</th></tr></thead> <tbody><tr><td><a href="../../api/open-api/login/wx.login.html">wx.login</a></td> <td><a href="../compatibility.html">2.3.1</a></td> <td></td></tr> <tr><td><a href="../../api/open-api/user-info/wx.getUserInfo.html">wx.getUserInfo</a></td> <td><a href="../compatibility.html">2.3.1</a></td> <td></td></tr></tbody></table></div></details> <h4 id="Bugs-Tips"><a href="#Bugs-Tips" class="header-anchor">#</a> Bugs &amp; Tips</h4> <ul><li><a href="../../api/data-analysis/wx.reportAnalytics.html">wx.reportAnalytics</a> 可以被正常调用，但目前不会进行统计展示。</li></ul></div> <div class="fixed-translate" style="display:none;"><span>The translations are provided by WeChat Translation and are for reference only. In case of any inconsistency and discrepancy between the Chinese version and the English version, the Chinese version shall prevail.Incorrect translation. <a href="javascript:;" class="fixed-translate-btn">Tap to report.</a></span></div></div> <!----> <div class="related"><!----> <!----></div> <footer class="page-edit"><!----></footer>  <footer class="footer"><ul class="footer-links"><li class="footer-link"><a href="http://www.tencent.com/zh-cn/index.shtml" target="_blank">关于腾讯</a></li> <li class="footer-link"><a href="https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=1484641676" target="_blank">文档中心</a></li> <li class="footer-link"><a href="https://mp.weixin.qq.com/cgi-bin/opshowpage?action=dispelinfo&lang=zh_CN&begin=1&count=9" target="_blank">辟谣中心</a></li> <li class="footer-link"><a href="http://kf.qq.com/faq/120911VrYVrA1509086vyumm.html" target="_blank">客服中心</a></li> <li class="footer-link"><a href="mailto:weixinmp@qq.com" target="_blank">联系邮箱</a></li></ul> <p class="copyright">Copyright © 2012-<span>2022</span> Tencent. All Rights Reserved.</p></footer></div></main></div> <!----></div></div> <div id="popoverWrapId" class="pop-links__wrp popover_hide"><ul class="pop-links__list"><li class="pop-links__item"><button class="pop-link">复制</button></li> <li class="pop-links__item"><button class="pop-link">问题反馈</button></li></ul></div> <div class="fixed-btns"><a href="javascript:;" class="fixed-btn fixed-btn__customer" style="display:none;"><div class="fixed-btn__inner"><span class="fixed-btn__icon"></span> <span class="fixed-btn__text">在线咨询</span></div></a> <a href="javascript:;" class="fixed-btn fixed-btn__feedback"><div class="fixed-btn__inner"><span class="fixed-btn__icon"></span> <span class="fixed-btn__text">反馈</span></div></a> <a href="javascript:;" class="fixed-btn fixed-btn__top" style="display:none;"><div class="fixed-btn__inner"><span class="fixed-btn__icon"></span></div></a></div></div></div></div>
+    <script src="https://res.wx.qq.com/wxdoc/dist/assets/js/app.22b0b45a.js" defer></script><script src="https://res.wx.qq.com/wxdoc/dist/assets/js/1990.cbec408a.js" defer></script>
+  </body>
+</html>

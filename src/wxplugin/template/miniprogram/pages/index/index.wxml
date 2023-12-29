@@ -1,0 +1,4 @@
+<view style="margin-top:100px">
+  <view style="font-size: 50rpx;font-weight: border;text-align: center;">模拟进入插件的入口</view>
+  <navigator id="nav" url="/pluginsModule/pages/index/index">模拟 -- 进入分包页面</navigator>
+</view>

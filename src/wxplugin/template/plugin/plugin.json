@@ -1,0 +1,10 @@
+{
+  "publicComponents": {
+    "login": "components/login/login"
+  },
+  "pages": {
+    "hello-page": "pages/hello-page",
+    "index_index": "pages/index/index"
+  },
+  "main": "index.js"
+}

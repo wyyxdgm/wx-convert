@@ -1,0 +1,13 @@
+<view style="margin-top:100px">
+  <view style="font-size: 50rpx;font-weight: border;text-align: center;">模拟主应用的分包首页</view>
+  <navigator class="nav" style="margin-top:20rpx" url="plugin://myPlugin/index_index">
+    插件首页
+  </navigator>
+  <view class="mt-10">
+    <view>登录组件==></view>
+    <login class="nav-container mt-10" />
+    <view>开发页面列表==></view>
+    <navigator class="nav mt-10" url="plugin://myPlugin/hello-page">hello-page</navigator>
+    <navigator class="nav mt-10" wx:for="{{items}}" url="{{item.url}}">{{item.key}}</navigator>
+  </view>
+</view>

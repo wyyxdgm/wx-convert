@@ -1,0 +1,40 @@
+{
+  "pages": ["pages/index/index"],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "微信小程序转插件",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default",
+    "pageOrientation": "portrait"
+  },
+  "subPackages": [
+    {
+      "root": "pluginsModule",
+      "pages": ["pages/index/index"],
+      "plugins": {
+        "myPlugin": {
+          "version": "dev",
+          "provider": "替换主小程序ID"
+        }
+      },
+      "independent": true
+    }
+  ],
+  "plugins": {
+    "xxxxx": {
+      "version": "1.0.0",
+      "provider": "xxxxxxxxxxxxxxxxxx"
+    }
+  },
+  "functionalPages": {
+    "independent": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation", "onLocationChange", "startLocationUpdate"],
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "login": "plugin://myPlugin/login"
+  }
+}

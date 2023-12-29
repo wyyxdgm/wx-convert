@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        "strictNullChecks": false,
+        "noImplicitAny": false,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": false,
+        "alwaysStrict": false,
+        "noFallthroughCasesInSwitch": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "strict": false,
+        "strictPropertyInitialization": false,
+        "sourceMap": false,
+        "module": "commonjs",
+        "target": "ES5",
+        "lib": ["es2015"],
+        "types": ["yargs", "node"],
+        "typeRoots": ["./typings", "./src/wxplugin/typings"],
+        "skipLibCheck": true,
+        "outDir": "dist"
+    },
+    "exclude": ["dist"],
+    "include": [
+        "./typings/*",
+        "src/*.ts",
+        "src/**/*.ts",
+        "src/**/**/*.ts",
+        "src/**/**/**/*.ts",
+        "src/**/**/**/**/*.ts"
+    ],
+    "ts-node": { "files": true }
+}
