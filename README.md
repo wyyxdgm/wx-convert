@@ -44,9 +44,9 @@ wx-convert aplugin -h
 ```
 #### 工程使用参考
 
-模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和cli以及convert目录解析，用于总体模板工程结构参考
-[cli](https://github.com/wyyxdgm/wx-convert) 本工程，cli，用于根据规则转换模板工程
-[convert](https://github.com/wyyxdgm/convert) [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含convert规则，用于迭代代码转换规则，可自定义扩展
+- 模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和cli以及convert目录解析，用于总体模板工程结构参考
+-[cli](https://github.com/wyyxdgm/wx-convert) cli工程，用于根据[convert](https://github.com/wyyxdgm/convert)规则转换模板工程
+- [convert](https://github.com/wyyxdgm/convert) 是[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含convert规则，用于迭代代码转换规则，可自定义扩展
 
 #### convert.config.js
 
