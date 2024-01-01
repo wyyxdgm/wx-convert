@@ -42,6 +42,11 @@ wx-convert aplugin -h
   wx-convert aplugin [[-c] configpath]  使用configpath配置，默认使用项目根目录的convert.config.js
   wx-convert aplugin -i src -o dist     将src文件夹的项目，生成到dist文件夹中
 ```
+#### 工程使用参考
+
+模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和cli以及convert目录解析，用于总体模板工程结构参考
+[cli](https://github.com/wyyxdgm/wx-convert) 本工程，cli，用于根据规则转换模板工程
+[convert](https://github.com/wyyxdgm/convert) [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含convert规则，用于迭代代码转换规则，可自定义扩展
 
 #### convert.config.js
 
