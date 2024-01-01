@@ -8,17 +8,15 @@
 
 ## 全局使用
 
-首先安装：
+### 安装
 
 ```sh
 npm i wx-convert -g
 ```
 
+### 基本使用
+
 之后可以使用下列指令：
-
-### 微信小程序转支付宝小程序
-
-运行：
 
 ```sh
 wx-convert aplugin -h
@@ -44,25 +42,29 @@ wx-convert aplugin -h
   wx-convert aplugin -i src -o dist     将src文件夹的项目，生成到dist文件夹中
 ```
 
-### 微信小程序插件转支付宝小程序插件
+### 微信小程序转支付宝小程序
 
-此模式和[微信小程序转支付宝小程序](#微信小程序转支付宝小程序)的区别在于 `convert.config.js`(尤其过滤器 `filters`)差异，其他基本复用
+分两种模式
 
-运行：
+- 克隆子项目到自有项目中，并配置入口文件，相对轻量
+- 克隆模板项目，复杂模板项目中的文件到自有项目
+
+#### 自有项目使用步骤
+
+1. 克隆子项目[convert](https://github.com/wyyxdgm/convert)，位于微信项目根目录
 
 ```sh
-wx-convert aplugin -h
+# cd wx-project-root
+git clone https://github.com/wyyxdgm/convert.git
 ```
 
-- TODO：待整理文档
+2. 下载入口配置文件`convert.config.js`到根目录
 
-#### 工程使用参考
+```sh
+wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template/master/convert.config.js
+```
 
-- 模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和 cli 以及 convert 目录解析，用于总体模板工程结构参考
-- [cli](https://github.com/wyyxdgm/wx-convert) cli 工程，用于根据[convert](https://github.com/wyyxdgm/convert)规则转换模板工程
-- [convert](https://github.com/wyyxdgm/convert) 是[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含 convert 规则，用于迭代代码转换规则，可自定义扩展
-
-#### convert.config.js
+- convert.config.js 举例
 
 ```js
 const customFilters = require("./convert/index");
@@ -154,9 +156,60 @@ module.exports = [
 ];
 ```
 
+3. 微信项目根目录执行转换命令
+
+```bash
+wx-convert aplugin
+```
+
+#### 模板项目使用步骤
+
+<!-- 这是一个由 2 个仓库构成的样例模板
+
+- 模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和 cli 以及 convert 目录解析，用于总体模板工程结构参考
+- [convert](https://github.com/wyyxdgm/convert) 是[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含 convert 规则，用于迭代代码转换规则，可自定义扩展 -->
+
+1. 克隆[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 项目。
+
+```sh
+git clone https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template.git
+```
+
+2. 确保子项目已被克隆[convert](https://github.com/wyyxdgm/convert)，并处于上述项目根目录，如果不存在:
+
+```sh
+git submodule init
+git submodule udpate
+```
+
+3. 拷贝`convert`目录和`convert.config.js`到自有项目中
+
+```sh
+cp convert /to/my/wx-project-root
+cp convert.config.js /to/my/wx-project-root
+```
+
+4. 自由项目的根目录中执行
+
+```
+wx-convert aplugin
+```
+
+### 微信小程序插件转支付宝小程序插件
+
+- TODO：待整理文档
+
+此模式和[微信小程序转支付宝小程序](#微信小程序转支付宝小程序)的区别在于 `convert.config.js`(尤其过滤器 `filters`)差异，其他基本复用
+
+#### 运行
+
+```sh
+wx-convert aplugin
+```
+
 ### 微信小程序转插件
 
-待支持
+- TODO 待文档补充
 
 运行：
 
@@ -179,3 +232,7 @@ exec({
   watch: true,
 });
 ```
+
+## TODO
+
+- 微信小程序转插件 - 文档补充
