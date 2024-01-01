@@ -71,7 +71,7 @@ if (argv._[0] === 'aplugin') {
     console.error(error);
     showError(`处理失败！`);
   }));
-  aPlugin.exec(argv);
+  aPlugin.exec(argv as any);
 }
 
 if (argv._[0] === 'wxplugin') {
@@ -79,5 +79,5 @@ if (argv._[0] === 'wxplugin') {
     console.error(error);
     showError(`处理失败！`);
   }));
-  wxPlugin.exec(argv);
+  wxPlugin.exec(argv as any);
 }

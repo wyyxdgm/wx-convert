@@ -11,9 +11,6 @@ export default function ({ types: _t }: any) {
       "CallExpression": {
         exit: function (path: NodePath, state: any) {
           if (isComponentsLikeCallExpression(path)) {
-            // if (state.filename == '/Users/damo/workspace/sightp.com/ARTravel-wxapp/packageScan/components/scan/basic/scan-basic.js') {
-            //   debugger
-            // }
             if (state.unshiftToBodyAsts?.length) {
               let poc = path as NodePath<CallExpression>;
               let ast = null;

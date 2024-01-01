@@ -2,10 +2,11 @@
 
 用于转换微信小程序
 
-1. 小程序转插件
-2. 小程序插件转支付宝小程序插件
+1. 微信小程序转微信插件
+2. 微信小程序插件转支付宝小程序插件
+3. 微信小程序转支付宝小程序
 
-## 使用
+## 全局使用
 
 首先安装：
 
@@ -15,7 +16,7 @@ npm i wx-convert -g
 
 之后可以使用下列指令：
 
-### aplugin
+### 微信小程序转支付宝小程序
 
 运行：
 
@@ -42,11 +43,24 @@ wx-convert aplugin -h
   wx-convert aplugin [[-c] configpath]  使用configpath配置，默认使用项目根目录的convert.config.js
   wx-convert aplugin -i src -o dist     将src文件夹的项目，生成到dist文件夹中
 ```
+
+### 微信小程序插件转支付宝小程序插件
+
+此模式和[微信小程序转支付宝小程序](#微信小程序转支付宝小程序)的区别在于 `convert.config.js`(尤其过滤器 `filters`)差异，其他基本复用
+
+运行：
+
+```sh
+wx-convert aplugin -h
+```
+
+- TODO：待整理文档
+
 #### 工程使用参考
 
-- 模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和cli以及convert目录解析，用于总体模板工程结构参考
--[cli](https://github.com/wyyxdgm/wx-convert) cli工程，用于根据[convert](https://github.com/wyyxdgm/convert)规则转换模板工程
-- [convert](https://github.com/wyyxdgm/convert) 是[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含convert规则，用于迭代代码转换规则，可自定义扩展
+- 模板工程 [convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 包含微信官方小程序和 cli 以及 convert 目录解析，用于总体模板工程结构参考
+- [cli](https://github.com/wyyxdgm/wx-convert) cli 工程，用于根据[convert](https://github.com/wyyxdgm/convert)规则转换模板工程
+- [convert](https://github.com/wyyxdgm/convert) 是[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template)内部子仓库，包含 convert 规则，用于迭代代码转换规则，可自定义扩展
 
 #### convert.config.js
 
@@ -140,7 +154,7 @@ module.exports = [
 ];
 ```
 
-### wxplugin
+### 微信小程序转插件
 
 待支持
 
@@ -148,4 +162,20 @@ module.exports = [
 
 ```sh
 wx-convert wxplugin -h
+```
+
+## 脚本方式使用
+
+```js
+import { exec } from "wx-convert";
+exec({
+  _: [],
+  /** The script name or node command */
+  $0: "",
+  /** All remaining options */
+  // input: '/path/to/project', // 此模式,将尝试解析/path/to/project/convert.config.js作为主配置入口
+  // output: '/path/to/project/dist/aprogram',
+  config: "/path/to/project/convert.config.js",
+  watch: true,
+});
 ```

@@ -10,33 +10,68 @@ import * as core from "@babel/core";
 import * as wxml from "wxml";
 import * as csstree from 'css-tree';
 
+/**
+ * 支持处理的文件格式
+ */
 const VALIDATE_TYPE = new Set([...addOnTypes, 'axml', 'wxml', 'js', 'ts', 'map', 'yaml', 'acss', 'pdf', 'png', 'jpeg', 'json', 'less', 'wxss', 'scss', 'wxs', 'sjs', 'md', 'txt', 'json', ''])
 process.on('uncaughtException', console.error);
 class Content implements IConvert.Content {
   [x: string]: any;
   private str: string;
+  /**
+   * 目标文件类型，目前用于合适的格式化方法选择
+   * 支持文件类型：null | 'axml' | 'js' | 'ts' | 'png' | 'jpeg' | 'json' | 'less' | 'scss' | 'wxs' | 'sjs'
+   * 文件格式对应格式化方法：
+   * 'axml' -- jsBeautify.html
+   * 'json' -- JSON.stringify
+   * 'less'|'scss' -- jsBeautify.css
+   * 'js'|'ts'|'wxs'|'sjs' -- jsBeautify.js
+   */
   type: IConvert.ContentType = null;
+  /**
+   * 源码目录
+   */
   from: string = null;
+  /**
+   * 是否自动格式化
+   */
   autoFormat: boolean = true;
+  /**
+   * 目标目录
+   */
   to: string = null;
+  /**
+   * 全局Convert对象引用
+   */
   ctx: IConvert.Convert;
+  /**
+   * {path.ParsedPath} 目标文件信息 
+   */
   private _to: path.ParsedPath;
   constructor(_: { str: string, type: string, from: string, to: string, ctx: IConvert.Convert }) {
     if (!VALIDATE_TYPE.has(_.type)) console.warn(`类型[${_.type}]不支持!(${_.from})`);
     Object.assign(this, _);
     this._to = path.parse(this.to);
   }
+  /**
+   * 清除缓存中记录的文件内容，下次将重新从源文件读取内容
+   */
   reload() {
     this.str = undefined;
     if (isFunction(this['onReload'])) this['onReload']?.();
   }
+  /**
+   * 读取缓存中的文件内容，没有缓存则从源文件读取
+   */
   getStr(): string {
     if (!this.str) {
       this.str = readFileStrSync(this.from);
     }
     return this.str
   }
-
+  /**
+   * 更新缓存文件内容
+   */
   setStr(str: string) {
     this.str = str;
   }
@@ -51,10 +86,17 @@ class Content implements IConvert.Content {
     if (this.autoFormat) output = formatCode(output, this.type, this.from);
     return output;
   }
-
+  /**
+   * TODO
+   * @returns null
+   */
   getTree() {
     return null; // TODO
   }
+  /**
+   * 将源文件转换结果写到目标目录
+   * @returns undefined
+   */
   dump() {
     if (!existsSync(this._to.dir)) { mkdirSync(this._to.dir, { recursive: true }) }
     if (!this.str && !this.serialize) return copyFile(this.from, this.to);
@@ -63,16 +105,38 @@ class Content implements IConvert.Content {
 }
 
 class Convert implements IConvert.Convert {
-  $ = {
+  $: {
     core,
     wxml,
     csstree,
-  };
+  } = {
+      core,
+      wxml,
+      csstree,
+    };
+  /**
+   * 全局缓存Map，分两层，建议：第一层存储关联数据的文件绝对路径，第二层对应具体功能存储，不限数据类型
+   */
   store = new Map();
+  /**
+   * 文件过滤器，匹配规则及对应处理方法
+   */
   filters: Array<IConvert.Filter>;
-  contents: Map<string, Content> = new Map();
+  /**
+   * Map: key - 源文件绝对路径，value: Content对象，用于缓存源文件内容，并将源文件内容序列化后写入目标文件
+   */
+  contents: Map<string, Content> = new Map<string, Content>();
+  /**
+   * 存储源文件绝对路径以及关联到该文件上的所有过滤方法集合
+   */
   matchedMap: Map<string, Array<IConvert.Parse>> = new Map();
+  /**
+   * 存储文件依赖关系，用于依赖关系的解析
+   */
   triggerChangeMap: Map<string, Array<string>> = new Map();
+  /**
+   * 入口配置
+   */
   config: IConvert.Option;
   constructor(config: IConvert.Option) {
     this.config = config;
@@ -80,15 +144,30 @@ class Convert implements IConvert.Convert {
     this.filters = config.customFilters?.filter(this.validateFilter) || [];
     if (config.addOnTypes) config.addOnTypes.forEach(t => VALIDATE_TYPE.add(t));
   }
+  /**
+   * 直接往目标文件写入文件内容
+   * @param to 目标文件路径
+   * @param content 文件内容
+   */
   setStr(to, content) {
     new Content({ str: content, type: path.extname(to).substring(1), from: to, to, ctx: this }).dump()
   }
+  /**
+   * 校验过滤器有效性
+   * @param filter 
+   * @returns 返回过滤器是否有效;true: 有效;false: 无效;undefined: 无效;
+   */
   validateFilter(filter: IConvert.Filter): boolean {
     if (!filter) return false;
     if (!filter.match) return;
     if (!filter.parse) return;
     return true;
   }
+  /**
+   * 初始化源目录下需要处理的所有文件关系
+   * @param f 源文件路径
+   * @param t 目标文件路径
+   */
   initMatchedFilters(f: string, t: string) {
     this.filters.forEach(filter => {
       if (!this.contents.has[f]) this.contents.set(f, new Content({ from: f, to: t, str: readFileStrSync(f), type: path.extname(f).substring(1), ctx: this }))
@@ -123,9 +202,9 @@ class Convert implements IConvert.Convert {
   }
 
   /**
-   * 添加依赖
-   * @param f string
-   * @param deps []
+   * 添加文件依赖关系
+   * @param f string 源文件
+   * @param deps [] 依赖文件集合
    */
   addDeps(f: string, deps: IConvert.Depends) {
     deps.forEach(dep => {
@@ -138,6 +217,10 @@ class Convert implements IConvert.Convert {
       }
     });
   }
+  /**
+   * 处理 convert.config.js中的rsync字段，仅同步文件
+   * @returns undefined
+   */
   resolveRsync() {
     let { config } = this;
     if (config.rsync) {
@@ -168,6 +251,9 @@ class Convert implements IConvert.Convert {
       }
     }
   }
+  /**
+   * 开启转换流程
+   */
   startConvert() {
     console.log(`startConvert...`);
     // templateDir
@@ -185,6 +271,11 @@ class Convert implements IConvert.Convert {
     })
     console.log(`convert done!`);
   }
+  /**
+   * 文件解析顺序排序
+   * @param transformList 待处理的源文件-目标文件列表
+   * @returns 新的列表
+   */
   sort(transformList) {
     // wxss优先于wxml
     // json最先
@@ -200,6 +291,10 @@ class Convert implements IConvert.Convert {
     if (this.config.verbose) console.log(`文件解析顺序=========>\n`, transformList.map(t => t[0].replace(this.config.fromDir, '')).join('\n'));
     return transformList;
   }
+  /**
+   * 处理模板文件同步
+   * @param config 入口配置
+   */
   resolveTemplate(config: any) {
     const absTemplateDir = resolveProjectPath(config.templateDir);
     let { files: pp, ignored } = getChildrenFromFolder(absTemplateDir, (fp) => true, 10);
@@ -216,11 +311,20 @@ class Convert implements IConvert.Convert {
       }
     })
   }
+  /**
+   * 转换执行
+   * @param k 文件路径或Content
+   * @param fns 匹配到的处理方法集
+   */
   excuteLayers(k: string | IConvert.Content, fns: IConvert.Parse[]) {
     const content = isString(k) ? this.contents.get(k) : k;
     // console.log(`excuteLayers`, k, content);
     fns.forEach(fn => fn(content, this))
   }
+  /**
+   * 监听功能
+   * @param content Content对象
+   */
   watchContent(content: IConvert.Content) {
     if (this.config.verbose) console.log('watch', content.from);
     watchFile(content.from, { interval: 3000 }, (c, p) => {
@@ -246,7 +350,15 @@ class Convert implements IConvert.Convert {
  * 执行编译
  * @argument argv 参数
  */
-export function exec(argv: yargs.Arguments) {
+export function exec(argv: yargs.Arguments & {
+  input?: string,
+  output?: string,
+  config?: string,
+  root?: string,
+  watch?: boolean,
+  silence?: boolean,
+  verbose?: boolean,
+}) {
   let { input: fromDir, output: targetDir, config: configPath, root, watch, silence, verbose } = argv;
   let c = path.resolve(process.cwd(), (configPath || 'convert.config.js'));
   if (!root && c) root = path.dirname(c)
