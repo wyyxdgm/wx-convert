@@ -6,6 +6,8 @@ declare namespace IConvert {
   type Option = {
     renamePath?(p1: string, absTemplateDir: string, targetDir: string): string;
     projectConfig?: any;
+    packageJson?:any;
+    dependencies: { [key: string]: string };
     root: string,
     fromDir: string,
     targetDir: string,

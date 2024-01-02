@@ -144,12 +144,19 @@ class Convert implements IConvert.Convert {
     if (config.addOnTypes) config.addOnTypes.forEach(t => VALIDATE_TYPE.add(t));
     const projectConfigPath = path.join(this.config.root, 'project.config.json');
     if (existsSync(projectConfigPath)) {
-      this.config.projectConfig = readFileJSONSync(projectConfigPath);
       let projectJson = readFileJSONSync(projectConfigPath);
       this.config.projectConfig = projectJson;
       this.config.miniprogramRoot = config.miniprogramRoot || projectJson.miniprogramRoot;
     } else {
       this.config.miniprogramRoot = config.miniprogramRoot || '';
+    }
+    const packageJsonPath = path.join(this.config.root, 'package.json');
+    if (existsSync(packageJsonPath)) {
+      let packageJson = readFileJSONSync(packageJsonPath);
+      this.config.packageJson = packageJson;
+      this.config.dependencies = config.dependencies || packageJson.dependencies;
+    } else {
+      this.config.dependencies = config.dependencies || {};
     }
   }
   /**
