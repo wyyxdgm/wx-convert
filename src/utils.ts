@@ -181,12 +181,13 @@ export async function copyDir(src: string, dest: string): Promise<void> {
   });
 }
 
-
-
 export const readFileStrSync = (p: string) => {
   return readFileSync(p, { encoding: 'utf-8' })
 }
 
+export const readFileJSONSync = (p: string) => {
+  return JSON.parse(readFileStrSync(p));
+}
 
 export function rersolvePathPlaceHolder(deps: string, f: string): string {
   const pd = path.parse(f);

@@ -4,11 +4,19 @@
 declare namespace IConvert {
   // 转换配置
   type Option = {
+    renamePath?(p1: string, absTemplateDir: string, targetDir: string): string;
+    projectConfig?: any;
+    root: string,
     fromDir: string,
     targetDir: string,
-    silence?: Boolean, verbose?: Boolean,
+    miniprogramRoot: string,
+    silence?: Boolean,
+    verbose?: Boolean,
     addOnTypes?: string[];
-    rsync?: { [k: string]: Array<string> }; watch?: boolean; templateDir?: string; targetDir: string; customFilters?: Array<IConvert.Filter>
+    rsync?: { [k: string]: Array<string> };
+    watch?: boolean;
+    templateDir?: string;
+    customFilters?: Array<IConvert.Filter>
   };
   /**
    * 转换过程全局控制类，每个文件parse时会传入
