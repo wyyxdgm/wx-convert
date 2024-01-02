@@ -1,11 +1,6 @@
 import { exec } from '../src/aplugin/index';
+import path from 'path';
 exec({
-  _: [],
-  /** The script name or node command */
-  $0: '',
-  /** All remaining options */
-  // input: '/path/to/project',
-  // output: '/path/to/project/dist/aprogram',
-  config: '/path/to/project/convert.config.js',
+  config: path.join(__dirname, '../../convert-miniprogram-to-aliminiprogram-template/convert.config.js'),
   watch: true,
 })

@@ -1,11 +1,10 @@
 import yargs from "yargs";
 import { assign, formatCode, getChildrenFromFolder, readFileJSONSync, readFileStrSync, rersolvePathPlaceHolder, resolveProjectPath, setRoot } from "../utils";
 import path from "path";
-import { copyFile, copySync, mkdirSync, writeFileSync, watchFile, unlinkSync } from "fs-extra";
+import { copyFile, copySync, mkdirSync, existsSync, writeFileSync, watchFile, removeSync } from "fs-extra";
 import { isFunction, isRegExp, isString } from "lodash";
 import { customFilters } from './filters/index';
 import { filterDir, renamePath, addOnTypes } from "./config";
-import { copyFileSync, existsSync } from "fs";
 import * as core from "@babel/core";
 import * as wxml from "wxml";
 import * as csstree from 'css-tree';
@@ -238,7 +237,7 @@ class Convert implements IConvert.Convert {
         const tos = config.rsync[_from].map(f => resolveProjectPath(f));
         tos.forEach(to => {
           if (this.config.verbose) console.log(`copied`, from, '-->', to);
-          copyFileSync(from, to);
+          copySync(from, to);
         })
         if (!config.watch) return;
         watchFile(from, { interval: 3000 }, (c, p) => {
@@ -247,13 +246,13 @@ class Convert implements IConvert.Convert {
             tos.forEach(to => {
               if (existsSync(to)) {
                 if (!this.config.silence) console.log(`deleted`, from, '-->', to);
-                unlinkSync(to);
+                removeSync(to);
               }
             })
           } else {
             tos.forEach(to => {
               if (!this.config.silence) console.log(`changed`, from, '-->', to);
-              copyFile(from, to);
+              copySync(from, to);
             })
           }
         })
@@ -341,7 +340,7 @@ class Convert implements IConvert.Convert {
       if (c.nlink === 0) {
         if (existsSync(content.to)) {
           if (!this.config.silence) console.log(`deleted`, content.from, '-->', content.to);
-          unlinkSync(content.to);
+          removeSync(content.to);
         }
       } else {
         if (!this.config.silence) console.log(`changed`, content.from, '-->', content.to);
@@ -359,7 +358,7 @@ class Convert implements IConvert.Convert {
  * 执行编译
  * @argument argv 参数
  */
-export function exec(argv: yargs.Arguments & {
+export function exec(argv: yargs.Arguments | {
   input?: string,
   output?: string,
   config?: string,
