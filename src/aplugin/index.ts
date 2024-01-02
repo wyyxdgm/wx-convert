@@ -150,7 +150,7 @@ class Convert implements IConvert.Convert {
     } else {
       this.config.miniprogramRoot = config.miniprogramRoot || '';
     }
-    const packageJsonPath = path.join(this.config.root, 'package.json');
+    const packageJsonPath = path.join(this.config.root, this.config.miniprogramRoot, 'package.json');
     if (existsSync(packageJsonPath)) {
       let packageJson = readFileJSONSync(packageJsonPath);
       this.config.packageJson = packageJson;
