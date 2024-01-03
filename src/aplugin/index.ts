@@ -146,7 +146,7 @@ class Convert implements IConvert.Convert {
     if (existsSync(projectConfigPath)) {
       let projectJson = readFileJSONSync(projectConfigPath);
       this.config.projectConfig = projectJson;
-      this.config.miniprogramRoot = config.miniprogramRoot || projectJson.miniprogramRoot;
+      this.config.miniprogramRoot = config.miniprogramRoot || projectJson.miniprogramRoot || '';
     } else {
       this.config.miniprogramRoot = config.miniprogramRoot || '';
     }
