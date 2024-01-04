@@ -4,6 +4,8 @@
 declare namespace IConvert {
   // 转换配置
   type Option = {
+    targetMiniprogramNpmPath?: string;
+    miniprogramNpmPath?: string;
     renamePath?(p1: string, absTemplateDir: string, targetDir: string): string;
     projectConfig?: any;
     packageJson?:any;

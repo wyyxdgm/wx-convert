@@ -1,7 +1,7 @@
 import yargs from "yargs";
 import { assign, formatCode, getChildrenFromFolder, readFileJSONSync, readFileStrSync, rersolvePathPlaceHolder, resolveProjectPath, setRoot } from "../utils";
 import path from "path";
-import { copyFile, copySync, mkdirSync, existsSync, writeFileSync, watchFile, removeSync } from "fs-extra";
+import { copyFile, copySync, mkdirSync, existsSync, writeFileSync, watchFile, removeSync, pathExistsSync } from "fs-extra";
 import { isFunction, isRegExp, isString } from "lodash";
 import { customFilters } from './filters/index';
 import { filterDir, renamePath, addOnTypes } from "./config";
@@ -150,11 +150,28 @@ class Convert implements IConvert.Convert {
     } else {
       this.config.miniprogramRoot = config.miniprogramRoot || '';
     }
+    this.config.miniprogramNpmPath = path.join(this.config.fromDir, this.config.miniprogramRoot, 'miniprogram_npm');
+    this.config.targetMiniprogramNpmPath = path.join(this.config.targetDir, this.config.miniprogramRoot, 'miniprogram_npm');
     const packageJsonPath = path.join(this.config.root, this.config.miniprogramRoot, 'package.json');
     if (existsSync(packageJsonPath)) {
       let packageJson = readFileJSONSync(packageJsonPath);
       this.config.packageJson = packageJson;
       this.config.dependencies = config.dependencies || packageJson.dependencies;
+      for (const pkgName in this.config.dependencies) {
+        let pkgFolderPath = path.join(this.config.fromDir, this.config.miniprogramRoot, 'node_modules', pkgName);
+        let pkgPath = path.join(pkgFolderPath, 'package.json');
+        if (pathExistsSync(pkgPath)) {
+          const pkgJson = require(pkgPath);
+          if (pkgJson.miniprogram) {
+            let pkgFromFilesPath = path.join(pkgFolderPath, pkgJson.miniprogram);
+            let pkgTargetFilesPath = path.join(this.config.targetMiniprogramNpmPath, pkgName); // 不拼接pkgJson.miniprogram，官方工具就是直接替换，cli则是导出js
+            copySync(pkgFromFilesPath, pkgTargetFilesPath);
+            this.config.dependencies[pkgName] = pkgName; // path.join(pkgName, pkgJson.miniprogram);
+          }
+        } else {
+          if (!this.config.dependencies[pkgName]) this.config.dependencies[pkgName] = pkgName;
+        }
+      }
     } else {
       this.config.dependencies = config.dependencies || {};
     }
