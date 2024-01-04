@@ -164,8 +164,8 @@ class Convert implements IConvert.Convert {
           const pkgJson = require(pkgPath);
           if (pkgJson.miniprogram) {
             let pkgFromFilesPath = path.join(pkgFolderPath, pkgJson.miniprogram);
-            let pkgTargetFilesPath = path.join(this.config.targetMiniprogramNpmPath, pkgName); // 不拼接pkgJson.miniprogram，官方工具就是直接替换，cli则是导出js
-            copySync(pkgFromFilesPath, pkgTargetFilesPath);
+            let miniprogramNpmFilesPath = path.join(this.config.miniprogramNpmPath, pkgName); // 不拼接pkgJson.miniprogram，官方工具就是直接替换，cli则是导出js
+            copySync(pkgFromFilesPath, miniprogramNpmFilesPath);
             this.config.dependencies[pkgName] = pkgName; // path.join(pkgName, pkgJson.miniprogram);
           }
         } else {
