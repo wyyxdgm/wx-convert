@@ -180,9 +180,24 @@ class Convert implements IConvert.Convert {
    * 直接往目标文件写入文件内容
    * @param to 目标文件路径
    * @param content 文件内容
+   * @param from 源文件路径，存在时将启用监听，和对应过滤规则
    */
-  setStr(to, content) {
-    new Content({ str: content, type: path.extname(to).substring(1), from: to, to, ctx: this }).dump()
+  setStr(to, content, from) {
+    if (from) {
+      this.filters.forEach(filter => {
+        if (!this.contents.has[from]) this.contents.set(from, new Content({ from, to, str: content, type: path.extname(from).substring(1), ctx: this }))
+        if (this.isMatched(filter, from, to)) {
+          if (!this.matchedMap.has(from)) this.matchedMap.set(from, []);
+          this.matchedMap.get(from).push(filter.parse);
+        }
+        if (filter.deps) { this.addDeps(from, filter.deps); }
+      })
+      const fns = this.matchedMap.get(content.from);
+      if (fns) this.excuteLayers(content, fns);
+      this.contents.get(from)?.dump();
+    } else {
+      new Content({ str: content, type: path.extname(to).substring(1), from: to, to, ctx: this }).dump()
+    }
   }
   /**
    * 校验过滤器有效性
