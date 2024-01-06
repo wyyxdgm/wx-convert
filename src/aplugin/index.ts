@@ -1,7 +1,7 @@
 import yargs from "yargs";
 import { assign, formatCode, getChildrenFromFolder, readFileJSONSync, readFileStrSync, rersolvePathPlaceHolder, resolveProjectPath, setRoot } from "../utils";
 import path from "path";
-import { copyFile, copySync, mkdirSync, existsSync, writeFileSync, watchFile, removeSync, pathExistsSync } from "fs-extra";
+import { copyFile, copySync, mkdirSync, existsSync, writeFileSync, watchFile, removeSync, pathExistsSync, writeFile } from "fs-extra";
 import { isFunction, isRegExp, isString } from "lodash";
 import { customFilters } from './filters/index';
 import { filterDir, renamePath, addOnTypes } from "./config";
@@ -118,6 +118,10 @@ class Convert implements IConvert.Convert {
    */
   store = new Map();
   /**
+   * 虚拟文件，对应直接写入目标文件的模板文件等；使用场景：目前用于wxml中的wxs片段，直接生成目标文件。
+   */
+  virtualFiles = new Map();
+  /**
    * 文件过滤器，匹配规则及对应处理方法
    */
   filters: Array<IConvert.Filter>;
@@ -179,24 +183,27 @@ class Convert implements IConvert.Convert {
   /**
    * 直接往目标文件写入文件内容
    * @param to 目标文件路径
-   * @param content 文件内容
+   * @param str 文件内容
    * @param from 源文件路径，存在时将启用监听，和对应过滤规则
    */
-  setStr(to, content, from) {
+  setStr(to, str, from) {
     if (from) {
+      this.virtualFiles.set(from, to);
+      writeFileSync(from, str, 'utf8')
+      if (!this.contents.has[from]) this.contents.set(from, new Content({ from, to, str, type: path.extname(from).substring(1), ctx: this }))
+      const content = this.contents.get(from);
       this.filters.forEach(filter => {
-        if (!this.contents.has[from]) this.contents.set(from, new Content({ from, to, str: content, type: path.extname(from).substring(1), ctx: this }))
         if (this.isMatched(filter, from, to)) {
           if (!this.matchedMap.has(from)) this.matchedMap.set(from, []);
           this.matchedMap.get(from).push(filter.parse);
         }
         if (filter.deps) { this.addDeps(from, filter.deps); }
       })
-      const fns = this.matchedMap.get(content.from);
+      const fns = this.matchedMap.get(from);
       if (fns) this.excuteLayers(content, fns);
-      this.contents.get(from)?.dump();
+      content.dump();
     } else {
-      new Content({ str: content, type: path.extname(to).substring(1), from: to, to, ctx: this }).dump()
+      new Content({ str, type: path.extname(to).substring(1), from: to, to, ctx: this }).dump()
     }
   }
   /**
@@ -281,10 +288,10 @@ class Convert implements IConvert.Convert {
         if (!config.watch) return;
         watchFile(from, { interval: 3000 }, (c, p) => {
           // console.log(c, p)
-          if (c.nlink === 0) {
+          if (c.nlink === 0 && !this.virtualFiles.has(from)) {
             tos.forEach(to => {
               if (existsSync(to)) {
-                if (!this.config.silence) console.log(`deleted`, from, '-->', to);
+                if (!this.config.silence) console.log(`deleted sync`, from, '-->', to);
                 removeSync(to);
               }
             })
@@ -376,9 +383,9 @@ class Convert implements IConvert.Convert {
     if (this.config.verbose) console.log('watch', content.from);
     watchFile(content.from, { interval: 3000 }, (c, p) => {
       // console.log(c, p)
-      if (c.nlink === 0) {
+      if (c.nlink === 0 && !this.virtualFiles.has(content.from)) {
         if (existsSync(content.to)) {
-          if (!this.config.silence) console.log(`deleted`, content.from, '-->', content.to);
+          if (!this.config.silence) console.log(`deleted by watch`, content.from, '-->', content.to);
           removeSync(content.to);
         }
       } else {
