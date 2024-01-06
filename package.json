@@ -1,6 +1,6 @@
 {
   "name": "wx-convert",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Convertion tools for miniprogram.",
   "main": "dist/index.js",
   "scripts": {
