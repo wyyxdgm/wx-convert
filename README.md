@@ -37,7 +37,7 @@ wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram-to-aliminipro
 git clone https://github.com/wyyxdgm/convert.git
 cd convert && npm i
 ```
-3. 微信开发者工具中执行`npm 构建`
+3. 微信开发者工具中执行[构建npm](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html#_2-%E6%9E%84%E5%BB%BA-npm)
 
 4. 转换
 
