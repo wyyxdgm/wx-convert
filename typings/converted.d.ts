@@ -6,6 +6,8 @@ declare namespace IConvert {
   type Option = {
     targetMiniprogramNpmPath?: string;
     miniprogramNpmPath?: string;
+    pluginRoot?: string;
+    compileType?: 'miniprogram' | 'plugin';
     renamePath?(p1: string, absTemplateDir: string, targetDir: string): string;
     projectConfig?: any;
     packageJson?:any;

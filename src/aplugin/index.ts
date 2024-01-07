@@ -151,8 +151,12 @@ class Convert implements IConvert.Convert {
       let projectJson = readFileJSONSync(projectConfigPath);
       this.config.projectConfig = projectJson;
       this.config.miniprogramRoot = config.miniprogramRoot || projectJson.miniprogramRoot || '';
+      this.config.pluginRoot = config.pluginRoot || projectJson.pluginRoot || '';
+      this.config.compileType = config.compileType || projectJson.compileType;
     } else {
       this.config.miniprogramRoot = config.miniprogramRoot || '';
+      this.config.pluginRoot = config.pluginRoot || '';
+      this.config.compileType = config.compileType;
     }
     this.config.miniprogramNpmPath = path.join(this.config.fromDir, this.config.miniprogramRoot, 'miniprogram_npm');
     this.config.targetMiniprogramNpmPath = path.join(this.config.targetDir, this.config.miniprogramRoot, 'miniprogram_npm');
