@@ -67,35 +67,64 @@ wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram-to-aliminipro
 - convert.config.js 举例
 
 ```js
-const customFilters = require("./convert/index");
 const path = require("path");
-
+const fs = require("fs");
 module.exports = {
-  fromDir: "./",
-  targetDir: "./dist/aplugin",
-  templateDir: "./convert/template",
-  rsync: {
-    "convert/template_sync/$my.js": ["convert/template/miniprogram/$my.js", "convert/template/plugin/$my.js"],
-    "convert/template_sync/enhance.js": [
-      "convert/template/miniprogram/enhance.js",
-      "convert/template/plugin/enhance.js",
-    ],
+  // 微信小程序 -> 支付宝小程序
+  fromDir: "./", // 小程序代码根目录
+  targetDir: "./dist/aprogram", // 生成代码根目录
+  templateDir: "./convert/template", // 模板文件目录，将被同步到`targetDir/${miniprogramRoot}`下
+  // miniprogramRoot: "miniprogram", // 默认同project.config.json中的miniprogramRoot
+  rsync: { // 支持文件和目录
+    // 将文件直接同步到多个目标文件
+    // "miniprogram/miniprogram_npm": ["./dist/aprogram/miniprogram/miniprogram_npm"],
+    // "convert/template_sync/$my.js": ["convert/template/$my.js"],
+    // "convert/template_sync/enhance.js": ["convert/template/enhance.js"]
   },
   filterDir: (p, fromDir) => {
-    // 总过滤，过滤不需要处理的文件
+    // 文件过滤器，过滤需要被解析的文件。针对路径p,返回Boolean值，true:需要处理;false:无需处理
     p = p.substr(fromDir.length + 1);
+    // whitelist - 必须处理
+    if ([".gitignore"].find((fnameStart) => p.indexOf(fnameStart) === 0)) return true;
+    // blacklist - 无需处理
     if (
-      ["node_modules", ".", "dist", "convert/", "convert.config.js", "plugin/node_modules", "plugin/.git"].find(
-        (fnameStart) => p.indexOf(fnameStart) === 0
-      )
-    )
+      [
+        "node_modules",
+        "plugin/node_modules",
+        "miniprogram/node_modules",
+        ".gitmodules",
+        ".git",
+        "build",
+        "dist",
+        "packagePlugin",
+        "convert/",
+        "typings/",
+        "convert.config.js",
+        ".vscode/",
+        "plugin/.git",
+      ].find((fnameStart) => p.indexOf(fnameStart) === 0)
+    ) {
       return false;
+    }
+    if ([".d.ts"].find((m) => p.endsWith(m))) return false;
+    // 部分页面既有less又有wxss，在支付宝中不支持
+    if (p.endsWith(".less")) {
+      if (fs.existsSync(path.join(fromDir, p.replace(".less", ".wxss")))) {
+        console.warn(`[删除less文件]存在同名wxss：${p}`);
+        return false;
+      }
+    }
+    // other - 处理
     return true;
   },
   renamePath: (p, fromDir, targetDir) => {
     // 全局更新目标文件名称或路径
     p = p.replace(fromDir, targetDir);
     const parsed = path.parse(p);
+    if (~parsed.dir.indexOf("custom-tab-bar")) {
+      // 换目录
+      p = p.replace("custom-tab-bar", "customize-tab-bar");
+    }
     if (parsed.ext === ".wxml") {
       return p.replace(/\.wxml$/, ".axml");
     }
@@ -113,8 +142,9 @@ module.exports = {
     }
     return p;
   },
-  customFilters,
+  customFilters: require("./convert"), // 面向所有文件的ast过滤器，主要用于端到端的代码更新适配
 };
+
 ```
 
 - customFilters 举例
@@ -123,36 +153,42 @@ module.exports = {
 
 ```js
 module.exports = [
-  {
-    // match 可以是函数、正则、字符
-    match: "project.config.json",
-    parse(c, ctx) {
-      // c.getStr 设置内容
-      // c.setStr 获取当前内容
-      // c.xxx 挂属性
-      // c.serialize = ()=> 'bbb'; // 重写最终写入目标文件的内容，默认为c.getStr(),也就是原文件读取到的内容
-      obj = require(c.from);
-      let newObj = {
-        enableAppxNg: true,
-        format: 2,
-        miniprogramRoot: "miniprogram",
-        pluginRoot: obj.pluginRoot,
-        compileType: obj.compileType,
-        compileOptions: {
-          component2: true,
-          typescript: true,
-          less: true,
-        },
-        uploadExclude: obj.packOptions.ignore.map((item) => item.value),
-        assetsInclude: "",
-        developOptions: "",
-        pluginResolution: "",
-        scripts: "",
-      };
-      c.setStr(JSON.stringify(newObj));
-    },
-  },
-  // 此处可以继续添加其他过滤器
+  // match 可以是函数、正则、字符
+  match: (f, t, ctx) => f.endsWith("project.config.json"),
+  parse(c, ctx) {
+    // c.getStr 获取当前内容
+    // c.setStr 设置内容
+    // c.xxx 挂属性
+    // c.serialize = ()=> 'bbb'; // 重写最终写入目标文件的内容，默认为c.getStr(),也就是原文件读取到的内容
+    obj = require(c.from);
+    // "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+    // 微信：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html
+    // 转
+    // 支付宝：https://opendocs.alipay.com/mini/03dbc3
+    let newObj = {
+      enableAppxNg: true,
+      format: 2,
+      miniprogramRoot: obj.miniprogramRoot,
+      pluginRoot: obj.pluginRoot,
+      compileType: obj.compileType,
+      compileOptions: {
+        component2: true,
+        typescript: true,
+        less: true,
+        globalObjectMode: "enable",
+      },
+      uploadExclude: obj.packOptions.ignore.map((item) => {
+        return item.value;
+      }),
+      assetsInclude: "",
+      developOptions: {
+        hotReload: true,
+      },
+      pluginResolution: "",
+      scripts: "",
+    };
+    c.setStr(JSON.stringify(newObj));
+  }
 ];
 ```
 
@@ -160,6 +196,8 @@ module.exports = [
 
 ```bash
 wx-convert aplugin
+# 开发模式
+# wx-convert aplugin -wv
 ```
 
 #### 模板项目使用步骤

@@ -37,6 +37,7 @@
   "files": [
     "dist",
     "LICENCE",
+    "package.json",
     "README.md"
   ],
   "bugs": {
