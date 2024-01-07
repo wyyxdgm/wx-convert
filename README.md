@@ -30,14 +30,16 @@ npm i wx-convert -D
 wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template/master/convert.config.js
 ```
 
-2. 克隆子项目[convert](https://github.com/wyyxdgm/convert)，位于微信项目根目录
+2. 克隆子项目[convert](https://github.com/wyyxdgm/convert)，位于微信项目根目录，并安装依赖
 
 ```sh
 # convert.config.js中的customFilters会引用这个项目
 git clone https://github.com/wyyxdgm/convert.git
+cd convert && npm i
 ```
+3. 微信开发者工具中执行`npm 构建`
 
-3. 转换
+4. 转换
 
 ```sh
 npx wx-convert aplugin -wv # -w监听文件变化 -v开启日志
