@@ -27,7 +27,7 @@ npm i wx-convert -D
 
 ```sh
 # 下载配置文件`convert.config.js`到项目根目录
-wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template/master/convert.config.js
+wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram/master/convert.config.js
 ```
 
 2. 克隆子项目[convert](https://github.com/wyyxdgm/convert)，位于微信项目根目录，并安装依赖
@@ -90,7 +90,7 @@ git clone https://github.com/wyyxdgm/convert.git
 2. 下载入口配置文件`convert.config.js`到根目录
 
 ```sh
-wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template/master/convert.config.js
+wget https://raw.githubusercontent.com/wyyxdgm/convert-miniprogram/master/convert.config.js
 ```
 -->
 - convert.config.js 举例
@@ -231,10 +231,10 @@ wx-convert aplugin
 
 #### 模板项目使用步骤
 
-1. 克隆[convert-miniprogram-to-aliminiprogram-template](https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template) 项目。
+1. 克隆[convert-miniprogram](https://github.com/wyyxdgm/convert-miniprogram) 项目。
 
 ```sh
-git clone https://github.com/wyyxdgm/convert-miniprogram-to-aliminiprogram-template.git
+git clone https://github.com/wyyxdgm/convert-miniprogram.git
 ```
 
 2. 确保子项目已被克隆[convert](https://github.com/wyyxdgm/convert)，并处于上述项目根目录，如果不存在:
