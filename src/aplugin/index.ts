@@ -81,9 +81,14 @@ class Content implements IConvert.Content {
    */
   _serialize() {
     if (isFunction(this['beforeSerialize'])) this['beforeSerialize']?.();
-    let output = this.serialize?.() || this.getStr();
-    if (this.autoFormat) output = formatCode(output, this.type, this.from);
-    return output;
+    try {
+      let output = this.serialize?.() || this.getStr();
+      if (this.autoFormat) output = formatCode(output, this.type, this.from);
+      return output;
+    } catch (error) {
+      debugger
+      console.error(error);
+    }
   }
   /**
    * TODO
@@ -184,6 +189,12 @@ class Convert implements IConvert.Convert {
       this.config.dependencies = config.dependencies || {};
     }
   }
+
+  getStr(f: string, exc?: boolean) {
+    if (exec) this.excuteLayers(f, this.matchedMap.get(f));
+    const content = this.contents.get(f);
+    return content._serialize();
+  }
   /**
    * 直接往目标文件写入文件内容
    * @param to 目标文件路径
@@ -266,14 +277,18 @@ class Convert implements IConvert.Convert {
    */
   addDeps(f: string, deps: IConvert.Depends) {
     deps.forEach(dep => {
-      if (isString(dep)) {
-        if (!this.triggerChangeMap.has(dep)) this.triggerChangeMap.set(dep, []);
-        this.triggerChangeMap.get(rersolvePathPlaceHolder(dep, f)).push(f);
-      } else if (isFunction(dep)) {
-        let dfile = dep(f, this);
-        this.triggerChangeMap.get(rersolvePathPlaceHolder(dfile, f)).push(f);
-      }
+      this.addDep(f, dep);
     });
+  }
+   /*
+   * 添加依赖
+   * @param f string
+   * @param deps []
+   */
+  addDep(f: string, dep: IConvert.Depend) {
+    if (isFunction(dep)) dep = dep(f, this);
+    if (!this.triggerChangeMap.has(dep)) this.triggerChangeMap.set(dep, []);
+    this.triggerChangeMap.get(dep).push(f);
   }
   /**
    * 处理 convert.config.js中的rsync字段，仅同步文件
@@ -321,6 +336,8 @@ class Convert implements IConvert.Convert {
     Array.from(this.matchedMap.entries()).forEach(([k, fns]) => {
       this.excuteLayers(k, fns);
     })
+    // 处理依赖
+    Array.from(this.triggerChangeMap.values()).flat().map(f => this.excuteLayers(f, this.matchedMap.get(f)))
     Array.from(this.contents.values()).forEach(c => {
       c.dump();
       if (this.config.watch) {
@@ -379,6 +396,12 @@ class Convert implements IConvert.Convert {
     // console.log(`excuteLayers`, k, content);
     fns.forEach(fn => fn(content, this))
   }
+  excuteContent(content: IConvert.Content) {
+    content.reload();
+    const fns = this.matchedMap.get(content.from);
+    if (fns) this.excuteLayers(content, fns);
+    content.dump();
+  }
   /**
    * 监听功能
    * @param content Content对象
@@ -394,10 +417,13 @@ class Convert implements IConvert.Convert {
         }
       } else {
         if (!this.config.silence) console.log(`changed`, content.from, '-->', content.to);
-        content.reload();
-        const fns = this.matchedMap.get(content.from);
-        if (fns) this.excuteLayers(content, fns);
-        content.dump();
+        this.excuteContent(content);
+        // 处理依赖
+        this.triggerChangeMap.get(content.from)?.forEach(f => {
+          let content = this.contents.get(f);
+          if (!this.config.silence) console.log(`dep changed`, content.from, '-->', content.to);
+          this.excuteContent(content);
+        })
       }
     })
   }

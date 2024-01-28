@@ -9,29 +9,34 @@ export function formatCode(code: string, type: IConvert.ContentType, p?: string,
   // let json = ['json'];
   // let css = ['less', 'scss'];
   // let js = ['js', 'ts', 'wxs', 'sjs'];
-  switch (type) {
-    case 'axml':
-      code = jsBeautify.html(code, { indent_size: indent });
-      break;
-    case 'json':
-      try {
-        code = JSON.stringify(JSON.parse(code), null, '  ');
-      } catch (error) {
-        console.warn('非法json', p ?? '\n' + code);
-      }
-      break;
-    case 'less':
-    case 'scss':
-      code = jsBeautify.css(code, { indent_size: indent });
-      break;
-    case 'js':
-    case 'ts':
-    case 'wxs':
-    case 'sjs':
-      code = jsBeautify.js(code, { indent_size: indent });
-      break;
-    default:
-      break;
+  try {
+
+    switch (type) {
+      case 'axml':
+        code = jsBeautify.html(code, { indent_size: indent });
+        break;
+      case 'json':
+        try {
+          code = JSON.stringify(JSON.parse(code), null, '  ');
+        } catch (error) {
+          console.warn('非法json', p ?? '\n' + code);
+        }
+        break;
+      case 'less':
+      case 'scss':
+        code = jsBeautify.css(code, { indent_size: indent });
+        break;
+      case 'js':
+      case 'ts':
+      case 'wxs':
+      case 'sjs':
+        code = jsBeautify.js(code, { indent_size: indent });
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    debugger
   }
   return code;
 }
@@ -189,10 +194,10 @@ export const readFileJSONSync = (p: string) => {
   return JSON.parse(readFileStrSync(p));
 }
 
-export function rersolvePathPlaceHolder(deps: string, f: string): string {
+export function rersolvePathPlaceHolder(dep: string, f: string): string {
   const pd = path.parse(f);
-  if (deps.startsWith('.')) deps = path.resolve(pd.dir, deps);
-  return deps.replace('$name', pd.name).replace('$base', pd.base).replace('$ext', pd.ext).replace('$dir', pd.dir)
+  if (dep.startsWith('.')) dep = path.resolve(pd.dir, dep);
+  return dep.replace('$name', pd.name).replace('$base', pd.base).replace('$ext', pd.ext).replace('$dir', pd.dir)
 }
 
 export function assign(target, source) {

@@ -10,7 +10,7 @@ declare namespace IConvert {
     compileType?: 'miniprogram' | 'plugin';
     renamePath?(p1: string, absTemplateDir: string, targetDir: string): string;
     projectConfig?: any;
-    packageJson?:any;
+    packageJson?: any;
     dependencies: { [key: string]: string };
     root: string,
     fromDir: string,
@@ -88,7 +88,8 @@ declare namespace IConvert {
      */
     startConvert();
   }
-  type Depends = Array<((f: string, ctx: IConvert.Convert) => string) | string>
+  type Depend = ((f: string, ctx: IConvert.Convert) => string) | string
+  type Depends = Array<Depend>
   type Match = string | RegExp | ((from: string, to: string, ctx: IConvert.Convert) => boolean);
   type Parse = (content: IConvert.Content, ctx: IConvert.Convert) => any;
   type Filter = { match: Match, parse: Parse, deps?: Depends }
